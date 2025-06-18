@@ -110,18 +110,6 @@ const AboutPage = () => {
   
   const boardMembers = [
     {
-      name: "Brendan Lo",
-      role: "Co-President / Co-Founder",
-      bio: "Brendan does web development (obviously), biology research (wet-lab and AI/ML), and game development ",
-      image: generateAvatar("alex"),
-      social: {
-        github: "https://github.com/patriotsbreeze",
-        linkedin: "https://www.linkedin.com/in/brendan-lo-8b0b80247/",
-        twitter: null,
-        portfolio: "https://www.brendanlo.xyz"
-      }
-    },
-    {
       name: "Thomas Liu",
       role: "Co-President / Co-Founder",
       bio: "Thomas does web development, ",
@@ -133,6 +121,19 @@ const AboutPage = () => {
         portfolio: "https://taylorrodriguez.design"
       }
     },
+    {
+      name: "Brendan Lo",
+      role: "Co-President / Co-Founder",
+      bio: "Brendan does web development (obviously), biology research (wet-lab and AI/ML), and game development ",
+      image: generateAvatar("alex"),
+      social: {
+        github: "https://github.com/patriotsbreeze",
+        linkedin: "https://www.linkedin.com/in/brendan-lo-8b0b80247/",
+        twitter: null,
+        portfolio: "https://www.brendanlo.xyz"
+      }
+    },
+    
     {
       name: "Jason (Jiahao) Yu",
       role: "Vice President",
