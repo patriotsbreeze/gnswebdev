@@ -107,24 +107,24 @@ const AboutPage = () => {
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color.replace('#', '%23')}" /><stop offset="100%" stop-color="${secondaryColor.replace('#', '%23')}" /></linearGradient></defs><circle cx="150" cy="150" r="150" fill="url(%23grad)" /></svg>`;
   };
 
-  // Sample board members data
+  
   const boardMembers = [
     {
-      name: "Alex Johnson",
-      role: "President",
-      bio: "Alex is a senior Computer Science major with a passion for React and modern JavaScript frameworks. They have interned at Google and contributed to several open-source projects.",
+      name: "Brendan Lo",
+      role: "Co-President / Co-Founder",
+      bio: "Brendan does web development (obviously), biology research (wet-lab and AI/ML), and game development ",
       image: generateAvatar("alex"),
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com",
-        portfolio: "https://alexjohnson.dev"
+        github: "https://github.com/patriotsbreeze",
+        linkedin: "https://www.linkedin.com/in/brendan-lo-8b0b80247/",
+        twitter: null,
+        portfolio: "https://www.brendanlo.xyz"
       }
     },
     {
-      name: "Taylor Rodriguez",
-      role: "Vice President",
-      bio: "Taylor specializes in UI/UX design and frontend development. With experience in design systems and accessibility, they bring a user-centered approach to all club projects.",
+      name: "Thomas Liu",
+      role: "Co-President / Co-Founder",
+      bio: "Thomas does web development, ",
       image: generateAvatar("taylor"),
       social: {
         github: "https://github.com",
@@ -134,9 +134,9 @@ const AboutPage = () => {
       }
     },
     {
-      name: "Jordan Lee",
-      role: "Technical Lead",
-      bio: "Jordan is a full-stack developer with expertise in Node.js, Express, and MongoDB. They've built several production applications and love teaching backend concepts.",
+      name: "Jason (Jiahao) Yu",
+      role: "Vice President",
+      bio: "jia ",
       image: generateAvatar("jordan"),
       social: {
         github: "https://github.com",
@@ -146,9 +146,9 @@ const AboutPage = () => {
       }
     },
     {
-      name: "Morgan Smith",
-      role: "Workshop Coordinator",
-      bio: "Morgan organizes our weekly workshops and technical sessions. With a background in education and web development, they excel at making complex concepts accessible to all.",
+      name: "Marvin Zhong",
+      role: "Treasurer",
+      bio: "Marvin ",
       image: generateAvatar("morgan"),
       social: {
         github: "https://github.com",
@@ -158,9 +158,9 @@ const AboutPage = () => {
       }
     },
     {
-      name: "Casey Williams",
-      role: "Project Manager",
-      bio: "Casey oversees all club projects and ensures teams have the resources they need. Their background in agile methodologies helps keep our projects on track and successful.",
+      name: "Felix Kong",
+      role: "Secretary",
+      bio: "felix",
       image: generateAvatar("casey"),
       social: {
         github: "https://github.com",
@@ -170,9 +170,9 @@ const AboutPage = () => {
       }
     },
     {
-      name: "Riley Chen",
-      role: "Outreach Coordinator",
-      bio: "Riley manages our relationships with industry partners and other campus organizations. They organize guest speakers and networking events to connect members with opportunities.",
+      name: "Sahil Gupta (possibly)",
+      role: "???",
+      bio: "??",
       image: generateAvatar("riley"),
       social: {
         github: "https://github.com",
