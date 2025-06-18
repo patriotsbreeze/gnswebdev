@@ -125,7 +125,7 @@ const AboutPage = () => {
       name: "Brendan Lo",
       role: "Co-President / Co-Founder",
       bio: "Brendan does web development (obviously), biology research (wet-lab and AI/ML), and game development ",
-      image: generateAvatar("alex"),
+      image: "https://i.postimg.cc/26DWbGSY/piceditedv1.jpg'", 
       social: {
         github: "https://github.com/patriotsbreeze",
         linkedin: "https://www.linkedin.com/in/brendan-lo-8b0b80247/",
@@ -138,7 +138,7 @@ const AboutPage = () => {
       name: "Jason (Jiahao) Yu",
       role: "Vice President",
       bio: "jia ",
-      image: generateAvatar("jordan"),
+      image: "https://i.postimg.cc/m258zxfG/jiahao.png",
       social: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
@@ -170,19 +170,11 @@ const AboutPage = () => {
         portfolio: null
       }
     },
-    {
-      name: "Sahil Gupta (possibly)",
-      role: "???",
-      bio: "??",
-      image: generateAvatar("riley"),
-      social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com",
-        portfolio: "https://rileychen.io"
-      }
-    }
   ];
+
+  // Split into top two and the rest
+  const topRowMembers = boardMembers.slice(0, 2);
+  const bottomRowMembers = boardMembers.slice(2);
 
   return (
     <PageContainer>
@@ -213,10 +205,23 @@ const AboutPage = () => {
         >
           Board Members
         </SectionTitle>
-        
-        <BoardGrid>
-          {boardMembers.map((member, index) => (
+        {/* Top row: first two members */}
+        <BoardGrid style={{
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          justifyContent: 'center',
+          marginBottom: '2.5rem',
+          maxWidth: '650px',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}>
+          {topRowMembers.map((member, index) => (
             <BoardMember key={index} member={member} index={index} />
+          ))}
+        </BoardGrid>
+        {/* Bottom row: the rest */}
+        <BoardGrid>
+          {bottomRowMembers.map((member, index) => (
+            <BoardMember key={index + 2} member={member} index={index + 2} />
           ))}
         </BoardGrid>
       </BoardSection>
