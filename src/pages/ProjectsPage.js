@@ -151,6 +151,15 @@ const ProjectsPage = () => {
       demo: "https://gns-astronomy.vercel.app"
     },
     {
+      title: "GNS Astronomy Website",
+      type: "Frontend",
+      description: "The GNS Astronomy Website displays the club's participation in earth science olympiad, observation nights, and learning sessions. ",
+      image: "https://i.postimg.cc/wjYCdX8t/gns-astronomypage.png",
+      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu"],
+      github: "https://github.com/patriotsbreeze/gns-astronomy",
+      demo: "https://gns-astronomy.vercel.app"
+    },
+    {
       title: "2638 Robotics Website",
       type: "Frontend",
       description: "The Rebel Robotics (FRC Team 2638) website showcases the Great Neck South High School robotics team's mission, achievements, and community involvement, highlighting event updates, outreach programs, and student accomplishments in competitive robotics and STEM leadership.",

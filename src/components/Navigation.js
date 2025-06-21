@@ -35,6 +35,7 @@ const NavLinks = styled.div`
 
   @media (max-width: 768px) {
     display: none;
+    margin-left: 0;
   }
 `;
 
@@ -158,7 +159,6 @@ const Navigation = () => {
           ))}
         </NavLinks>
 
-        <div style={{ flex: 1 }} />
         <MobileMenuButton onClick={toggleMobileMenu}>
           <div />
           <div />
