@@ -82,9 +82,8 @@ const SectionTitle = styled(motion.h2)`
 `;
 
 const AboutPage = () => {
-  // Generate placeholder avatar URLs using a color based on the seed
   const generateAvatar = (seed) => {
-    // Simple hash function to generate a color from a string
+
     const hashString = str => {
       let hash = 0;
       for (let i = 0; i < str.length; i++) {
@@ -103,7 +102,6 @@ const AboutPage = () => {
     const color = intToRGB(hashString(seed));
     const secondaryColor = intToRGB(hashString(seed + 'secondary'));
     
-    // Return a data URI for a simple SVG gradient with a circle (avatar-like)
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color.replace('#', '%23')}" /><stop offset="100%" stop-color="${secondaryColor.replace('#', '%23')}" /></linearGradient></defs><circle cx="150" cy="150" r="150" fill="url(%23grad)" /></svg>`;
   };
 
@@ -150,29 +148,28 @@ const AboutPage = () => {
       name: "Marvin Zhong",
       role: "Secretary",
       bio: "Marvin ",
-      image: generateAvatar("morgan"),
+      image: "https://i.postimg.cc/5t8yvn0q/marvinzhonggamerimage.jpg",
       social: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
         twitter: null,
-        portfolio: "https://morgansmith.tech"
+        portfolio: null
       }
     },
     {
       name: "Felix Kong",
       role: "Treasurer",
       bio: "felix",
-      image: generateAvatar("casey"),
+      image: "https://i.postimg.cc/43MCfgZW/feliximgv2.jpg",
       social: {
         github: "https://github.com",
         linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com",
+        twitter: null,
         portfolio: null
       }
     },
   ];
 
-  // Split into top two and the rest
   const topRowMembers = boardMembers.slice(0, 2);
   const bottomRowMembers = boardMembers.slice(2);
 
@@ -205,7 +202,7 @@ const AboutPage = () => {
         >
           Board Members
         </SectionTitle>
-        {/* Top row: first two members */}
+        { }
         <BoardGrid style={{
           gridTemplateColumns: 'repeat(2, 1fr)',
           justifyContent: 'center',
@@ -218,7 +215,7 @@ const AboutPage = () => {
             <BoardMember key={index} member={member} index={index} />
           ))}
         </BoardGrid>
-        {/* Bottom row: the rest */}
+        { }
         <BoardGrid>
           {bottomRowMembers.map((member, index) => (
             <BoardMember key={index + 2} member={member} index={index + 2} />

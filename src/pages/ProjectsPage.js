@@ -126,11 +126,29 @@ const ProjectsPage = () => {
     {
       title: "GNS SADD Website",
       type: "Frontend",
-      description: "The GNS SADD website represents the Great Neck South High School's SADD Club, promoting youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
+      description: "The GNS SADD website promotes youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
       image: "https://i.postimg.cc/66R6g7cy/gns-saddprojectimg.png",
       contributors: ["Brendan Lo", "Junmo Kim"],
       github: "https://github.com/patriotsbreeze/gns-sadd",
       demo: "https://gns-sadd.vercel.app"
+    },
+    {
+      title: "2638 Robotics Website",
+      type: "Frontend",
+      description: "The Rebel Robotics (FRC Team 2638) website showcases the Great Neck South High School robotics team's mission, achievements, and community involvement, highlighting event updates, outreach programs, and student accomplishments in competitive robotics and STEM leadership.",
+      image: "https://i.postimg.cc/fyXyDC9r/rebelroboticswebsiteimage.png",
+      contributors: ["Reid Fleishman", "Carolina Dea", "Brendan Lo"],
+      github: "https://github.com/thereidfleish/2638-website",
+      demo: "https://www.gnsrobotics.com"
+    },
+    {
+      title: "Daniel Kosukhin Portfolio",
+      type: "Frontend",
+      description: "A personal portfolio website showcasing Daniel Kosukhin’s frontend projects and problem-solving skills, with a focus on clean design and practical technology solutions.",
+      image: "https://i.postimg.cc/26sVBMdw/daniel-eng-portfolio.png",
+      contributors: ["Daniel Kosukhin"],
+      github: "https://github.com/fishnos/daniel-eng-portfolio",
+      demo: "https://daniel-eng-portfolio.vercel.app"
     }
   ];
   

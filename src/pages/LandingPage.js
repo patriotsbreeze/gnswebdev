@@ -578,7 +578,7 @@ const LandingPage = () => {
               <FeatureNumber>06</FeatureNumber>
               <FeatureTitle>Engage in Your Community</FeatureTitle>
               <FeatureText>
-              Impact the community by creating websites for local businesses, school clubs, or any organizations in need of a digital presence to enhance outreach and engagement.
+                Impact the community by creating websites for local businesses, school clubs, or any organizations in need of a digital presence to enhance outreach and engagement.
               </FeatureText>
             </FeatureItem>
           </FeaturesList>
