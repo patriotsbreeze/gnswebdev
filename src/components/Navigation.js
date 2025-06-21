@@ -116,7 +116,7 @@ const Navigation = () => {
     { name: 'About', path: '/about' },
     { name: 'Slides', path: '/slides' },
     { name: 'Projects', path: '/projects' },
-    { name: 'Podcast', path: '/podcast' }
+    { name: 'Join', path: '/join' }
   ];
   
   const toggleMobileMenu = () => {

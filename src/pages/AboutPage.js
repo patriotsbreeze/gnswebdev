@@ -108,21 +108,9 @@ const AboutPage = () => {
   
   const boardMembers = [
     {
-      name: "Thomas Liu",
-      role: "Co-President / Co-Founder",
-      bio: "Thomas does web development, ",
-      image: generateAvatar("taylor"),
-      social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        twitter: null,
-        portfolio: "https://taylorrodriguez.design"
-      }
-    },
-    {
       name: "Brendan Lo",
       role: "Co-President / Co-Founder",
-      bio: "Brendan does web development (obviously), biology research (wet-lab and AI/ML), and game development ",
+      bio: "Brendan does web development, biology research (wet-lab and AI/ML), and game development. ",
       image: "https://i.postimg.cc/26DWbGSY/piceditedv1.jpg'", 
       social: {
         github: "https://github.com/patriotsbreeze",
@@ -131,27 +119,38 @@ const AboutPage = () => {
         portfolio: "https://www.brendanlo.xyz"
       }
     },
-    
+    {
+      name: "Thomas Liu",
+      role: "Co-President / Co-Founder",
+      bio: "Thomas does web development, competitive programming, game development, and plans to major in CS.",
+      image: generateAvatar("taylor"),
+      social: {
+        github: "https://github.com/thomasLiu963",
+        linkedin: "https://www.linkedin.com/in/thomas-liu-1045b5295/",
+        twitter: null,
+        portfolio: null
+      }
+    }, 
     {
       name: "Jason (Jiahao) Yu",
       role: "Vice President",
-      bio: "jia ",
+      bio: "Jason loves game development, math, and plans to major in CS.",
       image: "https://i.postimg.cc/m258zxfG/jiahao.png",
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com",
+        github: null,
+        linkedin: null,
+        twitter: null,
         portfolio: null
       }
     },
     {
       name: "Marvin Zhong",
       role: "Secretary",
-      bio: "Marvin ",
+      bio: "Marvin is a cadet at his local fire department, and loves coding in his freetime. ",
       image: "https://i.postimg.cc/5t8yvn0q/marvinzhonggamerimage.jpg",
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
+        github: null,
+        linkedin: "https://www.linkedin.com/in/marvin-zhong-6a1136327/",
         twitter: null,
         portfolio: null
       }
@@ -159,11 +158,11 @@ const AboutPage = () => {
     {
       name: "Felix Kong",
       role: "Treasurer",
-      bio: "felix",
+      bio: "Felix loves playing tennis, helping others with their java projects, and being involved in DECA.",
       image: "https://i.postimg.cc/43MCfgZW/feliximgv2.jpg",
       social: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
+        github: null,
+        linkedin: null,
         twitter: null,
         portfolio: null
       }

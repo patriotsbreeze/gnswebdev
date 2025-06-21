@@ -7,7 +7,7 @@ import LandingPage from './pages/LandingPage';
 import AboutPage from './pages/AboutPage';
 import MeetingSlidesPage from './pages/MeetingSlidesPage';
 import ProjectsPage from './pages/ProjectsPage';
-import PodcastPage from './pages/PodcastPage';
+import JoinPage from './pages/JoinPage';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -97,7 +97,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/slides" element={<MeetingSlidesPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/podcast" element={<PodcastPage />} />
+            <Route path="/join" element={<JoinPage />} />
           </Routes>
         </MainContent>
         <Footer />

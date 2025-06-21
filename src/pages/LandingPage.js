@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const HeroSection = styled.section`
   height: 100vh;
@@ -408,15 +409,17 @@ const LandingPage = () => {
             Building the future of the web, one project at a time. Join us to learn, create, and innovate with modern web technologies.
           </HeroSubtitle>
           
-          <HeroButton
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover="hover"
-            whileTap="tap"
-          >
-            Join the Club
-          </HeroButton>
+          <Link to="/join" style={{ textDecoration: 'none' }}>
+            <HeroButton
+              variants={buttonVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Join the Club
+            </HeroButton>
+          </Link>
         </HeroContent>
       </HeroSection>
       
