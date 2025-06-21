@@ -10,7 +10,6 @@ const NavContainer = styled.nav`
   width: 100%;
   height: 80px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 5%;
   z-index: 100;
@@ -32,6 +31,11 @@ const Logo = styled(motion.div)`
 const NavLinks = styled.div`
   display: flex;
   gap: 2rem;
+  margin-left: auto;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavLink = styled(motion.div)`
@@ -122,13 +126,15 @@ const Navigation = () => {
   return (
     <>
       <NavContainer>
-        <Logo
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          GNS<span>Dev</span>
-        </Logo>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Logo
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            GNS<span> WebDev</span>
+          </Logo>
+        </Link>
         
         <NavLinks>
           {links.map((link, index) => (

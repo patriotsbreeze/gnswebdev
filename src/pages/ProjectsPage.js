@@ -118,19 +118,19 @@ const ProjectsPage = () => {
       title: "GNS Club Website",
       type: "Frontend",
       description: "The official website for the GNS Web Development Club, featuring information about the club, events, projects, and resources for members.",
-      image: generateProjectImage("gns-website"),
-      contributors: ["Alex Johnson", "Taylor Rodriguez"],
-      github: "https://github.com",
+      image: "https://i.postimg.cc/wv1M70DV/gnswebdevproject.png",
+      contributors: ["Brendan Lo", "Thomas Liu"],
+      github: "https://github.com/patriotsbreeze/gnswebdev",
       demo: "https://gnswebdev.club"
     },
     {
-      title: "Study Buddy",
-      type: "Full Stack",
-      description: "A collaborative study platform that helps students find study partners, create study groups, and share resources for their courses.",
-      image: generateProjectImage("study-buddy"),
-      contributors: ["Jordan Lee", "Casey Williams", "Riley Chen"],
-      github: "https://github.com",
-      demo: "https://studybuddy.app"
+      title: "GNS SADD Website",
+      type: "Frontend",
+      description: "The GNS SADD website represents the Great Neck South High School's SADD Club, promoting youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
+      image: "https://i.postimg.cc/66R6g7cy/gns-saddprojectimg.png",
+      contributors: ["Brendan Lo", "Junmo Kim"],
+      github: "https://github.com/patriotsbreeze/gns-sadd",
+      demo: "https://gns-sadd.vercel.appp"
     },
     {
       title: "Campus Events",

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const ProjectCardContainer = styled(motion.div)`
   background: rgba(30, 30, 30, 0.5);
@@ -170,7 +171,7 @@ const ProjectCard = ({ project, index }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <i className="fab fa-github"></i>
+              <FaGithub size={18} />
             </ProjectLink>
           )}
           {project.demo && (
@@ -181,7 +182,7 @@ const ProjectCard = ({ project, index }) => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <i className="fas fa-external-link-alt"></i>
+              <FaExternalLinkAlt size={18} />
             </ProjectLink>
           )}
         </ProjectLinks>
