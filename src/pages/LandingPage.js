@@ -576,9 +576,9 @@ const LandingPage = () => {
               viewport={{ once: true }}
             >
               <FeatureNumber>06</FeatureNumber>
-              <FeatureTitle>Web Dev Podcast</FeatureTitle>
+              <FeatureTitle>Engage in Your Community</FeatureTitle>
               <FeatureText>
-                Listen to our club's podcast where we discuss web development topics, interview professionals, and share insights about the industry. Available on our website and major podcast platforms.
+              Impact the community by creating websites for local businesses, school clubs, or any organizations in need of a digital presence to enhance outreach and engagement.
               </FeatureText>
             </FeatureItem>
           </FeaturesList>

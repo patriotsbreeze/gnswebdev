@@ -199,10 +199,10 @@ const Footer = () => {
             Email: info@gnswebdev.club
           </FooterText>
           <FooterText>
-            Location: GNS Campus, Room 42
+            Location: Great Neck South Library Computer Lab
           </FooterText>
           <FooterText>
-            Meeting Times: Wednesdays, 4:00 PM - 6:00 PM
+            Meeting Times: Thursdays, 2:45PM - 3:30PM
           </FooterText>
         </FooterSection>
       </FooterContent>
