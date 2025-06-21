@@ -176,93 +176,11 @@ const PodcastPage = () => {
       episodes: [
         {
           id: 1,
-          title: "Getting Started with Web Development",
-          date: "January 15, 2025",
-          duration: "45 min",
-          description: "In this inaugural episode, we discuss the fundamentals of web development and what beginners need to know to get started in this exciting field. We cover the basic technologies, learning resources, and career paths available to aspiring web developers.",
-          audioUrl: "https://example.com/podcast/ep1.mp3" // This would be a real URL in production
-        },
-        {
-          id: 2,
-          title: "HTML & CSS Deep Dive",
-          date: "January 29, 2025",
-          duration: "52 min",
-          description: "We explore the building blocks of the web: HTML and CSS. Learn about semantic markup, CSS selectors, the box model, and responsive design principles that will help you create beautiful and accessible websites.",
-          audioUrl: "https://example.com/podcast/ep2.mp3"
-        },
-        {
-          id: 3,
-          title: "JavaScript Essentials",
-          date: "February 12, 2025",
-          duration: "58 min",
-          description: "JavaScript is the programming language of the web. In this episode, we cover core concepts like variables, functions, objects, and DOM manipulation that every web developer needs to master.",
-          audioUrl: "https://example.com/podcast/ep3.mp3"
-        },
-        {
-          id: 4,
-          title: "Responsive Design & Mobile First",
-          date: "February 26, 2025",
-          duration: "49 min",
-          description: "With mobile devices accounting for over half of web traffic, responsive design is more important than ever. We discuss mobile-first design principles, media queries, and testing strategies to ensure your sites look great on all devices.",
-          audioUrl: "https://example.com/podcast/ep4.mp3"
-        }
-      ]
-    },
-    {
-      season: "Season 2: Frontend Frameworks",
-      episodes: [
-        {
-          id: 5,
-          title: "Introduction to React",
-          date: "March 12, 2025",
-          duration: "61 min",
-          description: "React has revolutionized how we build user interfaces. We introduce the core concepts of React including components, props, state, and the virtual DOM, and explain why it's become so popular among developers.",
-          audioUrl: "https://example.com/podcast/ep5.mp3"
-        },
-        {
-          id: 6,
-          title: "State Management with Redux",
-          date: "March 26, 2025",
-          duration: "55 min",
-          description: "Managing state in complex applications can be challenging. We explore Redux, a popular state management library, and discuss when and how to use it effectively in your React applications.",
-          audioUrl: "https://example.com/podcast/ep6.mp3"
-        },
-        {
-          id: 7,
-          title: "Vue.js: The Progressive Framework",
-          date: "April 9, 2025",
-          duration: "53 min",
-          description: "Vue.js offers a more approachable learning curve while still providing powerful features. We discuss Vue's reactivity system, component architecture, and how it compares to other frameworks like React and Angular.",
-          audioUrl: "https://example.com/podcast/ep7.mp3"
-        }
-      ]
-    },
-    {
-      season: "Season 3: Backend Development",
-      episodes: [
-        {
-          id: 8,
-          title: "Node.js & Express Fundamentals",
-          date: "April 23, 2025",
-          duration: "57 min",
-          description: "Node.js allows JavaScript to run on the server. We explore how to build backend services with Node.js and Express, covering routing, middleware, and connecting to databases.",
-          audioUrl: "https://example.com/podcast/ep8.mp3"
-        },
-        {
-          id: 9,
-          title: "RESTful API Design",
-          date: "May 7, 2025",
-          duration: "50 min",
-          description: "APIs are the backbone of modern web applications. We discuss REST principles, resource design, authentication, and best practices for creating APIs that developers will love to use.",
-          audioUrl: "https://example.com/podcast/ep9.mp3"
-        },
-        {
-          id: 10,
-          title: "Database Options for Web Developers",
-          date: "May 21, 2025",
-          duration: "59 min",
-          description: "Choosing the right database is crucial for application performance and scalability. We compare SQL and NoSQL options, discussing the strengths and weaknesses of PostgreSQL, MongoDB, Redis, and more.",
-          audioUrl: "https://example.com/podcast/ep10.mp3"
+          title: "title",
+          date: "date",
+          duration: "___min",
+          description: "",
+          audioUrl: "link to audio" 
         }
       ]
     }
@@ -276,7 +194,7 @@ const PodcastPage = () => {
     }
   };
   
-  // We don't need to find the current episode separately since we're using the episode directly in the map function
+  
   
   return (
     <PageContainer>
