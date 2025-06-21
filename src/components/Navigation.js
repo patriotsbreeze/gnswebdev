@@ -58,6 +58,11 @@ const NavLink = styled(motion.div)`
   &:hover::after {
     width: 100%;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.35rem;
+    padding: 0.7rem 0;
+  }
 `;
 
 const MobileMenuButton = styled(motion.button)`
@@ -152,7 +157,8 @@ const Navigation = () => {
             </Link>
           ))}
         </NavLinks>
-        
+
+        <div style={{ flex: 1 }} />
         <MobileMenuButton onClick={toggleMobileMenu}>
           <div />
           <div />

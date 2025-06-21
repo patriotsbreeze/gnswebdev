@@ -588,51 +588,6 @@ const LandingPage = () => {
         </FeaturesContainer>
       </FeaturesSection>
       
-      <CTASection>
-        <CTAContainer>
-          <CTATitle
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Ready to Join Us?
-          </CTATitle>
-          
-          <CTAText
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Whether you're a beginner looking to learn the basics or an experienced developer wanting to expand your skills, our club has something for everyone. Join us today and be part of a community that's passionate about web development.
-          </CTAText>
-          
-          <CTAButtons>
-            <PrimaryButton
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              viewport={{ once: true }}
-            >
-              Sign Up Now
-            </PrimaryButton>
-            
-            <SecondaryButton
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              viewport={{ once: true }}
-            >
-              Learn More
-            </SecondaryButton>
-          </CTAButtons>
-        </CTAContainer>
-      </CTASection>
     </>
   );
 };
