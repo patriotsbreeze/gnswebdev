@@ -40,11 +40,12 @@ const HeroTitle = styled(motion.h1)`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.2;
+  text-shadow: 0px 4px 15px rgba(71, 153, 105, 0.3);
 `;
 
 const HeroSubtitle = styled(motion.h2)`
   font-size: clamp(1.2rem, 4vw, 1.8rem);
-  font-weight: 400;
+  font-weight: 700;
   margin-bottom: 2rem;
   color: #f0f0f0;
   max-width: 800px;
@@ -83,7 +84,8 @@ const Shape = styled(motion.div)`
   position: absolute;
   border-radius: 50%;
   background: rgba(100, 255, 218, 0.1);
-  backdrop-filter: blur(5px);
+  filter: blur(20px);
+  box-shadow: var(--shadow-2xs);
 `;
 
 const AboutSection = styled.section`
