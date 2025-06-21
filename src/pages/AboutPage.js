@@ -148,7 +148,7 @@ const AboutPage = () => {
     },
     {
       name: "Marvin Zhong",
-      role: "Treasurer",
+      role: "Secretary",
       bio: "Marvin ",
       image: generateAvatar("morgan"),
       social: {
@@ -160,7 +160,7 @@ const AboutPage = () => {
     },
     {
       name: "Felix Kong",
-      role: "Secretary",
+      role: "Treasurer",
       bio: "felix",
       image: generateAvatar("casey"),
       social: {
