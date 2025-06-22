@@ -157,7 +157,7 @@ const ProjectsPage = () => {
       image: "https://i.postimg.cc/QCk3WGtc/gns-academic-outreach.png",
       contributors: ["Brendan Lo", "Aidan Hong", "Evan (Yifu) Zuo", "Jake Zhong", "Max Kong"],
       github: "https://github.com/patriotsbreeze/gns-academic-outreach",
-      demo: "https://gns-cademic-outreach.vercel.app"
+      demo: "https://gns-academic-outreach.vercel.app"
     },
     {
       title: "2638 Robotics Website",
