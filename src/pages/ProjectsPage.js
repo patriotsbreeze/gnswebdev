@@ -119,7 +119,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The official website for the GNS Web Development Club, featuring information about the club, events, projects, and resources for members.",
       image: "https://i.postimg.cc/wv1M70DV/gnswebdevproject.png",
-      contributors: ["Brendan Lo", "Thomas Liu"],
+      contributors: ["Brendan Lo", "Thomas Liu", "Daniel Kosukhin"],
       github: "https://github.com/patriotsbreeze/gnswebdev",
       demo: "https://gnswebdev.club"
     },
@@ -128,7 +128,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS SADD website promotes youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
       image: "https://i.postimg.cc/66R6g7cy/gns-saddprojectimg.png",
-      contributors: ["Brendan Lo", "Felix Kong"],
+      contributors: ["Brendan Lo", "Felix Kong", "Thomas Liu", "Jeffrey Lau"],
       github: "https://github.com/patriotsbreeze/gns-sadd",
       demo: "https://gns-sadd.vercel.app"
     },
@@ -137,7 +137,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS Research Club website displays the projects of the research program, and also the achievements of the GNS Research students.",
       image: "https://i.postimg.cc/x1WcQFjv/gns-research-page.png",
-      contributors: ["Brendan Lo", "Marvin Zhong"],
+      contributors: ["Brendan Lo", "Marvin Zhong", "Thomas Liu", "Austin Jin", "Caspar Wang"],
       github: "https://github.com/patriotsbreeze/gns-research",
       demo: "https://gns-research.vercel.app"
     },
@@ -146,7 +146,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS Astronomy Website displays the club's participation in earth science olympiad, observation nights, and learning sessions. ",
       image: "https://i.postimg.cc/wjYCdX8t/gns-astronomypage.png",
-      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu"],
+      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu", "Junmo Kim", "Felix Kong"],
       github: "https://github.com/patriotsbreeze/gns-astronomy",
       demo: "https://gns-astronomy.vercel.app"
     },
@@ -155,7 +155,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS Academic Outreach Website invites others to join the club and to sign up to impact the community by tutoring peers and younger kids.",
       image: "https://i.postimg.cc/QCk3WGtc/gns-academic-outreach.png",
-      contributors: ["Brendan Lo", "Aidan Hong"],
+      contributors: ["Brendan Lo", "Aidan Hong", "Evan (Yifu) Zuo", "Jake Zhong", "Max Kong"],
       github: "https://github.com/patriotsbreeze/gns-academic-outreach",
       demo: "https://gns-cademic-outreach.vercel.app"
     },
