@@ -90,6 +90,7 @@ const MobileMenuButton = styled(motion.button)`
   
   @media (max-width: 768px) {
     display: flex;
+    margin-left: auto;
   }
 `;
 

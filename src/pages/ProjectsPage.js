@@ -151,13 +151,13 @@ const ProjectsPage = () => {
       demo: "https://gns-astronomy.vercel.app"
     },
     {
-      title: "GNS Astronomy Website",
+      title: "GNS Academic Outreach",
       type: "Frontend",
-      description: "The GNS Astronomy Website displays the club's participation in earth science olympiad, observation nights, and learning sessions. ",
-      image: "https://i.postimg.cc/wjYCdX8t/gns-astronomypage.png",
-      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu"],
-      github: "https://github.com/patriotsbreeze/gns-astronomy",
-      demo: "https://gns-astronomy.vercel.app"
+      description: "The GNS Academic Outreach Website invites others to join the club and to sign up to impact the community by tutoring peers and younger kids.",
+      image: "https://i.postimg.cc/QCk3WGtc/gns-academic-outreach.png",
+      contributors: ["Brendan Lo", "Aidan Hong"],
+      github: "https://github.com/patriotsbreeze/gns-academic-outreach",
+      demo: "https://gns-cademic-outreach.vercel.app"
     },
     {
       title: "2638 Robotics Website",
