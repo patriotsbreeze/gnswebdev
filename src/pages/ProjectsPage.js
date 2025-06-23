@@ -87,9 +87,8 @@ const ProjectsGrid = styled.div`
 const ProjectsPage = () => {
   const [filter, setFilter] = React.useState('all');
   
-  // Generate placeholder image URLs using a color based on the seed
   const generateProjectImage = (seed) => {
-    // Simple hash function to generate a color from a string
+    
     const hashString = str => {
       let hash = 0;
       for (let i = 0; i < str.length; i++) {
@@ -108,11 +107,9 @@ const ProjectsPage = () => {
     const color = intToRGB(hashString(seed));
     const secondaryColor = intToRGB(hashString(seed + 'secondary'));
     
-    // Return a data URI for a simple SVG gradient
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color.replace('#', '%23')}" /><stop offset="100%" stop-color="${secondaryColor.replace('#', '%23')}" /></linearGradient></defs><rect width="300" height="300" fill="url(%23grad)" /></svg>`;
   };
   
-  // Sample projects data
   const projects = [
     {
       title: "GNS Club Website",
@@ -185,6 +182,15 @@ const ProjectsPage = () => {
       contributors: ["Daniel Kosukhin"],
       github: "https://github.com/fishnos/daniel-eng-portfolio",
       demo: "https://daniel-eng-portfolio.vercel.app"
+    },
+    {
+      title: "Grocery List App",
+      type: "Full Stack",
+      description: "A simple app to track all your groceries with user logins.",
+      image: "https://i.postimg.cc/26sVBMdw/daniel-eng-portfolio.png",
+      contributors: ["Sahil Gupta"],
+      github: "https://github.com/MonkeyMan1911/grocery-sharer/tree/master",
+      demo: "https://grocery-sharer.onrender.com/"
     }
   ];
   
