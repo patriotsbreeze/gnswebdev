@@ -137,7 +137,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS SADD website promotes youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
       image: "https://i.postimg.cc/66R6g7cy/gns-saddprojectimg.png",
-      contributors: ["Brendan Lo", "Felix Kong", "Thomas Liu", "Jeffrey Lau"],
+      contributors: ["Brendan Lo", "Felix Kong", "Thomas Liu", "Charles Ming"],
       github: "https://github.com/patriotsbreeze/gns-sadd",
       demo: "https://gns-sadd.vercel.app"
     },
