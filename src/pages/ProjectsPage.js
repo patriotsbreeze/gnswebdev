@@ -124,6 +124,15 @@ const ProjectsPage = () => {
       demo: "https://gnswebdev.club"
     },
     {
+      title: "Famous Rotisserie & Grill Website",
+      type: "Frontend",
+      description: "The official website for the business Famous Rotisserie & Grill, which has 5 locations. The website has information regarding menus, catering, franchising, food delievery, and contact.",
+      image: "https://i.postimg.cc/VNwkf4Z2/famous-rotisseriepage.png",
+      contributors: ["Brendan Lo", "Jeffrey Lau"],
+      github: "https://github.com/patriotsbreeze/famous-rotisserie",
+      demo: "https://famous-rotisserie.vercel.app"
+    },
+    {
       title: "GNS SADD Website",
       type: "Frontend",
       description: "The GNS SADD website promotes youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
