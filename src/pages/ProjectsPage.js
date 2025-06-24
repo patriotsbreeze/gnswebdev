@@ -187,7 +187,7 @@ const ProjectsPage = () => {
       title: "Grocery List App",
       type: "Full Stack",
       description: "A simple app to track all your groceries with user logins.",
-      image: "https://i.postimg.cc/26sVBMdw/daniel-eng-portfolio.png",
+      image: "https://i.postimg.cc/tgQryP2M/grocerylistpage.png",
       contributors: ["Sahil Gupta"],
       github: "https://github.com/MonkeyMan1911/grocery-sharer/tree/master",
       demo: "https://grocery-sharer.onrender.com/"
