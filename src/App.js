@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
@@ -103,6 +104,7 @@ function App() {
         </MainContent>
         <Footer />
       </AppContainer>
+      <Analytics />
     </Router>
   );
 }
