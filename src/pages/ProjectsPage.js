@@ -116,7 +116,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The official website for the GNS Web Development Club, featuring information about the club, events, projects, and resources for members.",
       image: "https://i.postimg.cc/wv1M70DV/gnswebdevproject.png",
-      contributors: ["Brendan Lo", "Thomas Liu", "Daniel Kosukhin"],
+      contributors: ["Brendan Lo", "Thomas Liu", "Daniel Kosukhin", "Jiahao Yu"],
       github: "https://github.com/patriotsbreeze/gnswebdev",
       demo: "https://gnswebdev.club"
     },
@@ -125,16 +125,25 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The official website for the business Famous Rotisserie & Grill, which has 5 locations. The website has information regarding menus, catering, franchising, food delievery, and contact.",
       image: "https://i.postimg.cc/VNwkf4Z2/famous-rotisseriepage.png",
-      contributors: ["Brendan Lo", "Jeffrey Lau"],
+      contributors: ["Brendan Lo", "Jeffrey Lau", "Fengdeng Liu", "Ivan Chen"],
       github: "https://github.com/patriotsbreeze/famous-rotisserie",
       demo: "https://famous-rotisserie.vercel.app"
+    },
+    {
+      title: "EHYG Church website ",
+      type: "Frontend",
+      description: "Eunhae Youth Group (ehyg.vercel.app) presents itself as the most welcoming community, ever, associated with Eunhae Church (“은혜교회”), and emphasizes building the next generation “one child at a time.",
+      image: "https://i.postimg.cc/VNwkf4Z2/famous-rotisseriepage.png",
+      contributors: ["Brendan Lo", "Jeffrey Lau", "Fengdeng Liu", "Ivan Chen"],
+      github: "https://github.com/patriotsbreeze/ehyg",
+      demo: "https://ehyg.vercel.app"
     },
     {
       title: "GNS SADD Website",
       type: "Frontend",
       description: "The GNS SADD website promotes youth leadership and peer-driven prevention of destructive decisions through events, education, and community involvement.",
       image: "https://i.postimg.cc/66R6g7cy/gns-saddprojectimg.png",
-      contributors: ["Brendan Lo", "Felix Kong", "Thomas Liu", "Charles Ming"],
+      contributors: ["Brendan Lo", "Felix Kong", "Thomas Liu", "Charles Ming", "Alvin Li", "Junmo Kim"],
       github: "https://github.com/patriotsbreeze/gns-sadd",
       demo: "https://gns-sadd.vercel.app"
     },
@@ -143,7 +152,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS Research Club website displays the projects of the research program, and also the achievements of the GNS Research students.",
       image: "https://i.postimg.cc/x1WcQFjv/gns-research-page.png",
-      contributors: ["Brendan Lo", "Marvin Zhong", "Thomas Liu", "Austin Jin", "Caspar Wang"],
+      contributors: ["Brendan Lo", "Marvin Zhong", "Thomas Liu", "Austin Jin", "Caspar Wang", "Arnav Pemmaraju", "Bryan Cheng"],
       github: "https://github.com/patriotsbreeze/gns-research",
       demo: "https://gns-research.vercel.app"
     },
@@ -152,7 +161,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The GNS Astronomy Website displays the club's participation in earth science olympiad, observation nights, and learning sessions. ",
       image: "https://i.postimg.cc/wjYCdX8t/gns-astronomypage.png",
-      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu", "Junmo Kim", "Felix Kong"],
+      contributors: ["Brendan Lo", "Marvin Zhong", "Jiahao Yu", "Junmo Kim", "Felix Kong", "Nandini Khaneja"],
       github: "https://github.com/patriotsbreeze/gns-astronomy",
       demo: "https://gns-astronomy.vercel.app"
     },
@@ -170,7 +179,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "The Rebel Robotics (FRC Team 2638) website showcases the Great Neck South High School robotics team's mission, achievements, and community involvement, highlighting event updates, outreach programs, and student accomplishments in competitive robotics and STEM leadership.",
       image: "https://i.postimg.cc/fyXyDC9r/rebelroboticswebsiteimage.png",
-      contributors: ["Reid Fleishman", "Carolina Dea", "Brendan Lo"],
+      contributors: ["Reid Fleishman", "Carolina Dea", "Brendan Lo", "Jaxon Wang"],
       github: "https://github.com/thereidfleish/2638-website",
       demo: "https://www.gnsrobotics.com"
     },
@@ -188,7 +197,7 @@ const ProjectsPage = () => {
       type: "Full Stack",
       description: "A simple app to track all your groceries with user logins.",
       image: "https://i.postimg.cc/tgQryP2M/grocerylistpage.png",
-      contributors: ["Sahil Gupta"],
+      contributors: ["Sahil Gupta", "Max Stolove"],
       github: "https://github.com/MonkeyMan1911/grocery-sharer/tree/master",
       demo: "https://grocery-sharer.onrender.com/"
     }
