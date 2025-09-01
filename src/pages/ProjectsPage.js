@@ -134,7 +134,7 @@ const ProjectsPage = () => {
       type: "Frontend",
       description: "Eunhae Youth Group (ehyg.vercel.app) presents itself as the most welcoming community, ever, associated with Eunhae Church (“은혜교회”), and emphasizes building the next generation “one child at a time.",
       image: "https://i.postimg.cc/VNwkf4Z2/famous-rotisseriepage.png",
-      contributors: ["Brendan Lo", "Jeffrey Lau", "Fengdeng Liu", "Ivan Chen"],
+      contributors: ["Daniel Kosukhin", "Brendan Lo","Junmo Kim"],
       github: "https://github.com/patriotsbreeze/ehyg",
       demo: "https://ehyg.vercel.app"
     },
