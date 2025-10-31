@@ -121,6 +121,15 @@ const ProjectsPage = () => {
       demo: "https://gnswebdev.club"
     },
     {
+      title: "SATsaurus",
+      type: "Full-Stack",
+      description: "SATsaurus is a free web app that makes SAT preparation accessible and engaging for underprivileged students through practice problems, vocabulary flashcards, and a competitive 1v1 game mode.",
+      image: "https://i.postimg.cc/zXvyg8kL/satsaurus-cover.png",
+      contributors: ["Brendan Lo", "Aidan Hong", "Daniel Kosukhin", "Bryan Chen"],
+      github: "https://github.com/sat-rex-gang/thesatauras-rex-main",
+      demo: "https://www.satsaur.us"
+    },
+    {
       title: "Famous Rotisserie & Grill Website",
       type: "Frontend",
       description: "The official website for the business Famous Rotisserie & Grill, which has 5 locations. The website has information regarding menus, catering, franchising, food delievery, and contact.",
@@ -132,8 +141,8 @@ const ProjectsPage = () => {
     {
       title: "EHYG Church website ",
       type: "Frontend",
-      description: "Eunhae Youth Group (ehyg.vercel.app) presents itself as the most welcoming community, ever, associated with Eunhae Church (“은혜교회”), and emphasizes building the next generation “one child at a time.",
-      image: "https://i.postimg.cc/VNwkf4Z2/famous-rotisseriepage.png",
+      description: "Eunhae Youth Group presents itself as the most welcoming community, ever, associated with Eunhae Church (“은혜교회”), and emphasizes building the next generation “one child at a time.",
+      image: "https://i.postimg.cc/rsPFJR9M/ehyg-cover.png",
       contributors: ["Daniel Kosukhin", "Brendan Lo","Junmo Kim"],
       github: "https://github.com/patriotsbreeze/ehyg",
       demo: "https://ehyg.vercel.app"
