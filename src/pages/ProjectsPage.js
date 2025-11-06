@@ -130,6 +130,22 @@ const ProjectsPage = () => {
       demo: "https://www.satsaur.us"
     },
     {
+      title: "Kudos Connect",
+      type: "Full-Stack",
+      description: "Kudos is a resource platform that connects 7000+ high school students to opportunities, offering a biweekly newsletter with college application advice, volunteer events, academic programs, internships, and competitions.",
+      image: "https://i.postimg.cc/ZYHmDH8h/kudos-cover.png",
+      contributors: ["Brendan Lo", "Arnav Pemmaraju", "Yutong Ren", "Sahil Gupta"],
+      demo: "https://www.mykudos.org"
+    },
+    {
+      title: "Scope Development",
+      type: "Full-Stack",
+      description: "Scope Developement is a Roblox Macro Development Website, whom has 70k+ github downloads.",
+      image: "https://i.postimg.cc/xTG6PpMM/scope-development.png",
+      contributors: ["Ethan Kang", "Brendan Lo"],
+      demo: "https://scopedevelopment.tech"
+    },
+    {
       title: "Famous Rotisserie & Grill Website",
       type: "Frontend",
       description: "The official website for the business Famous Rotisserie & Grill, which has 5 locations. The website has information regarding menus, catering, franchising, food delievery, and contact.",
@@ -193,6 +209,15 @@ const ProjectsPage = () => {
       demo: "https://www.gnsrobotics.com"
     },
     {
+      title: "GNS Science Olympiad Website",
+      type: "Frontend",
+      description: "The GNS Science Olympiad Website displays the club's participation in science olympiad, and the achievements of the GNS Science Olympiad students.",
+      image: "https://i.postimg.cc/wjXYLkjT/gns-scioly-cover.png",
+      contributors: ["Max Lee", "Brendan Lo", "Andy Wu", "Thomas Liu"],
+      github: "https://github.com/max-lee-dev/gns-scioly",
+      demo: "https://gns-scioly.vercel.app"
+    },
+    {
       title: "Daniel Kosukhin Portfolio",
       type: "Frontend",
       description: "A personal portfolio website showcasing Daniel Kosukhin’s frontend projects and problem-solving skills, with a focus on clean design and practical technology solutions.",
@@ -209,7 +234,29 @@ const ProjectsPage = () => {
       contributors: ["Sahil Gupta", "Max Stolove"],
       github: "https://github.com/MonkeyMan1911/grocery-sharer/tree/master",
       demo: "https://grocery-sharer.onrender.com/"
+    },
+    {
+      title: "GNS Programming Club Website",
+      type: "Frontend",
+      description: "The official Great Neck South Programming Club Website",
+      image: "https://static.vecteezy.com/system/resources/thumbnails/046/769/264/small/black-crumpled-paper-with-shadow-for-background-wrinkled-surface-design-wallpape-free-photo.JPG",
+      contributors: ["Brendan Lo", "Daniel Kosukhin", "Thomas Liu"],
+    },
+    {
+      title: "GNS Asian Culture Club Website",
+      type: "Frontend",
+      description: "The official Great Neck South Asian Culture Club Website",
+      image: "https://static.vecteezy.com/system/resources/thumbnails/046/769/264/small/black-crumpled-paper-with-shadow-for-background-wrinkled-surface-design-wallpape-free-photo.JPG",
+      contributors: ["Daniel Kosukhin", "Brendan Lo"],
+    },
+    {
+      title: "GNS Key Club Website",
+      type: "Frontend",
+      description: "The official Great Neck South Key Club Website",
+      image: "https://static.vecteezy.com/system/resources/thumbnails/046/769/264/small/black-crumpled-paper-with-shadow-for-background-wrinkled-surface-design-wallpape-free-photo.JPG",
+      contributors: ["Jiahao Yu", "Thomas Liu", "Brendan Lo"],
     }
+    
   ];
   
   // Filter projects based on selected filter
