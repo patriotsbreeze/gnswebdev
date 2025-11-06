@@ -218,6 +218,23 @@ const ProjectsPage = () => {
       demo: "https://gns-scioly.vercel.app"
     },
     {
+      title: "Tiger King NYC",
+      type: "Frontend",
+      description: "Tiger King is a restaurant located in the Bronx, NY, that serves delicious and refreshing bubble tea, fruit teas, and smoothies, along with other food items like dumplings.",
+      image: "https://i.postimg.cc/jdNy6W0S/tiger-king-cover.png",
+      contributors: ["Caspar Wang", "Clara Wang", "Brendan Lo"],
+      demo: "https://www.tigerkingnyc.com"
+    },
+    {
+      title: "Cresqnt Portfolio",
+      type: "Frontend",
+      description: "Cresqnt's personal portfolio website showcasing his projects and skills.",
+      image: "https://i.postimg.cc/NFczg3RL/cresqnt-cover.png",
+      contributors: ["Ethan Kang", "Brendan Lo"],
+      github: "https://github.com/cresqnt-sys",
+      demo: "https://cresqnt.com"
+    },
+    {
       title: "Daniel Kosukhin Portfolio",
       type: "Frontend",
       description: "A personal portfolio website showcasing Daniel Kosukhin’s frontend projects and problem-solving skills, with a focus on clean design and practical technology solutions.",
