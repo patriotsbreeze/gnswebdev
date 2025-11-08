@@ -477,9 +477,7 @@ const KindnessPage = () => {
         >
           Shake your device or click the button to reveal a quote about kindness
           <br />
-          <span style={{ fontSize: '0.85em', opacity: 0.7, display: 'block', marginTop: '0.5rem' }}>
-            (Mobile: Shake your phone | Desktop: Click the button)
-          </span>
+          
         </Instruction>
 
         <ShakeButton
