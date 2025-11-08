@@ -274,29 +274,41 @@ const KindnessPage = () => {
     setCurrentQuote(randomQuote);
   }, []);
 
-  // Device shake detection
+  // Device shake detection - improved implementation
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
     let lastZ = 0;
     let lastTime = Date.now();
+    let isListening = false;
 
     const handleDeviceMotion = (event) => {
-      const { accelerationIncludingGravity } = event;
+      // Use acceleration (without gravity) if available, otherwise use accelerationIncludingGravity
+      const acceleration = event.acceleration || event.accelerationIncludingGravity;
       
-      if (!accelerationIncludingGravity) return;
+      if (!acceleration || (acceleration.x === null && acceleration.y === null && acceleration.z === null)) {
+        return;
+      }
 
       const currentTime = Date.now();
       const timeDifference = currentTime - lastTime;
 
+      // Only process every 100ms to reduce computational load
       if (timeDifference > 100) {
-        const deltaX = Math.abs(accelerationIncludingGravity.x - lastX);
-        const deltaY = Math.abs(accelerationIncludingGravity.y - lastY);
-        const deltaZ = Math.abs(accelerationIncludingGravity.z - lastZ);
+        const currentX = acceleration.x || 0;
+        const currentY = acceleration.y || 0;
+        const currentZ = acceleration.z || 0;
 
-        const acceleration = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+        // Calculate change in acceleration
+        const deltaX = Math.abs(currentX - lastX);
+        const deltaY = Math.abs(currentY - lastY);
+        const deltaZ = Math.abs(currentZ - lastZ);
 
-        if (acceleration > shakeThreshold) {
+        // Calculate total acceleration change
+        const totalAcceleration = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+
+        // Detect shake if acceleration exceeds threshold
+        if (totalAcceleration > shakeThreshold) {
           const now = Date.now();
           // Prevent too frequent shakes (at least 1 second apart)
           if (now - lastShakeTimeRef.current > 1000) {
@@ -305,33 +317,81 @@ const KindnessPage = () => {
           }
         }
 
-        lastX = accelerationIncludingGravity.x;
-        lastY = accelerationIncludingGravity.y;
-        lastZ = accelerationIncludingGravity.z;
+        // Update last known values
+        lastX = currentX;
+        lastY = currentY;
+        lastZ = currentZ;
         lastTime = currentTime;
       }
     };
 
-    // Request permission for device motion on iOS
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-      DeviceMotionEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            window.addEventListener('devicemotion', handleDeviceMotion);
-          }
-        })
-        .catch(console.error);
-    } else if (typeof DeviceMotionEvent !== 'undefined') {
-      // For Android and other devices
-      window.addEventListener('devicemotion', handleDeviceMotion);
+    // Function to start listening for device motion
+    const startListening = () => {
+      if (isListening) return;
+      
+      // Request permission for device motion on iOS 13+
+      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+        DeviceMotionEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
+              isListening = true;
+            } else {
+              console.log('Device motion permission denied');
+            }
+          })
+          .catch(error => {
+            console.error('Error requesting device motion permission:', error);
+          });
+      } else if (typeof DeviceMotionEvent !== 'undefined') {
+        // For Android and other devices that don't require permission
+        try {
+          window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
+          isListening = true;
+        } catch (error) {
+          console.error('Error adding device motion listener:', error);
+        }
+      }
+    };
+
+    // Start listening on first user interaction (required for iOS)
+    const handleUserInteraction = () => {
+      startListening();
+      // Remove listeners after first interaction
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+    };
+
+    // Add event listeners for user interaction
+    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+    document.addEventListener('click', handleUserInteraction, { once: true });
+
+    // Also try to start immediately for devices that don't require permission
+    // This will work for Android and desktop browsers
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
+      startListening();
     }
 
     return () => {
       window.removeEventListener('devicemotion', handleDeviceMotion);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('click', handleUserInteraction);
     };
-  }, [handleShake]);
+  }, [handleShake, shakeThreshold]);
 
   const handleButtonClick = () => {
+    // Request permission on iOS if not already granted (button click counts as user interaction)
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            // Permission granted, shake detection will work now
+          }
+        })
+        .catch(() => {
+          // Permission denied or error, but still allow button click
+        });
+    }
     handleShake();
   };
 
@@ -352,6 +412,10 @@ const KindnessPage = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           Shake your device or click the button to reveal a quote about kindness
+          <br />
+          <span style={{ fontSize: '0.85em', opacity: 0.7, display: 'block', marginTop: '0.5rem' }}>
+            (Mobile: Shake your phone | Desktop: Click the button)
+          </span>
         </Instruction>
 
         <ShakeButton
