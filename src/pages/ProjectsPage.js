@@ -87,29 +87,6 @@ const ProjectsGrid = styled.div`
 const ProjectsPage = () => {
   const [filter, setFilter] = React.useState('all');
   
-  const generateProjectImage = (seed) => {
-    
-    const hashString = str => {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      return hash;
-    };
-    
-    const intToRGB = hash => {
-      const c = (hash & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase();
-      return '#' + '00000'.substring(0, 6 - c.length) + c;
-    };
-    
-    const color = intToRGB(hashString(seed));
-    const secondaryColor = intToRGB(hashString(seed + 'secondary'));
-    
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color.replace('#', '%23')}" /><stop offset="100%" stop-color="${secondaryColor.replace('#', '%23')}" /></linearGradient></defs><rect width="300" height="300" fill="url(%23grad)" /></svg>`;
-  };
-  
   const projects = [
     {
       title: "GNS Club Website",
