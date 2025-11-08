@@ -268,6 +268,8 @@ const KindnessPage = () => {
   const shakeThreshold = 15; // Threshold for shake detection
   const buttonRef = useRef(null);
   const lastShakeTimeRef = useRef(0);
+  const permissionStateRef = useRef({ requested: false, granted: false });
+  const startListeningRef = useRef(null);
 
   // Core shake function - triggers animation and shows quote
   const triggerShake = useCallback(() => {
@@ -294,8 +296,27 @@ const KindnessPage = () => {
     }
   }, [triggerShake]);
 
-  // Handle button click - no cooldown
+  // Handle button click - no cooldown, also requests permission if needed
   const handleButtonClick = useCallback(() => {
+    // Request permission on iOS if not already granted (button click is a user gesture)
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
+        DeviceMotionEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              permissionStateRef.current.granted = true;
+              // Start listening immediately if we have the function
+              if (startListeningRef.current) {
+                startListeningRef.current();
+              }
+            }
+          })
+          .catch(() => {
+            // Permission denied or error - button still works
+          });
+        permissionStateRef.current.requested = true;
+      }
+    }
     triggerShake();
   }, [triggerShake]);
 
@@ -345,20 +366,27 @@ const KindnessPage = () => {
       }
     };
 
-    // Function to start listening for device motion
+    // Function to start listening for device motion - stored in ref so button can call it
     const startListening = () => {
       if (motionListener) return; // Already listening
       
       try {
         window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
         motionListener = handleDeviceMotion;
+        permissionStateRef.current.granted = true;
       } catch (error) {
         console.error('Error adding device motion listener:', error);
       }
     };
 
+    // Store function in ref so button click handler can call it
+    startListeningRef.current = startListening;
+
     // Request permission for iOS devices
     const requestIOSPermission = async () => {
+      if (permissionStateRef.current.requested) return; // Already requested
+      permissionStateRef.current.requested = true;
+
       if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
         try {
           const permissionState = await DeviceMotionEvent.requestPermission();
@@ -376,46 +404,56 @@ const KindnessPage = () => {
       }
     };
 
-    // For iOS, we need a user gesture to request permission
-    // We'll request it on ANY interaction (touch, click, scroll, etc.)
+    // Comprehensive interaction handler - captures ANY user interaction
     const handleAnyInteraction = () => {
-      requestIOSPermission();
-      // Remove all interaction listeners after first interaction
-      document.removeEventListener('touchstart', handleAnyInteraction);
-      document.removeEventListener('touchend', handleAnyInteraction);
-      document.removeEventListener('click', handleAnyInteraction);
-      document.removeEventListener('mousedown', handleAnyInteraction);
-      window.removeEventListener('scroll', handleAnyInteraction);
+      // Only request permission if not already requested or granted
+      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
+        requestIOSPermission();
+      }
     };
 
     // Try to start immediately for non-iOS devices
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
       // Android and other devices - start immediately
       startListening();
+      permissionStateRef.current.granted = true;
     } else if (typeof DeviceMotionEvent !== 'undefined') {
       // iOS devices - request permission on first interaction
-      // Listen for multiple interaction types to catch any user action
-      document.addEventListener('touchstart', handleAnyInteraction, { once: true, passive: true });
-      document.addEventListener('touchend', handleAnyInteraction, { once: true, passive: true });
-      document.addEventListener('click', handleAnyInteraction, { once: true, passive: true });
-      document.addEventListener('mousedown', handleAnyInteraction, { once: true, passive: true });
-      window.addEventListener('scroll', handleAnyInteraction, { once: true, passive: true });
+      // Use capture phase to catch interaction as early as possible
+      const options = { capture: true, passive: true, once: true };
+      
+      // Listen for ANY touch or interaction anywhere on the page
+      document.addEventListener('touchstart', handleAnyInteraction, options);
+      document.addEventListener('touchend', handleAnyInteraction, options);
+      document.addEventListener('touchmove', handleAnyInteraction, options);
+      document.addEventListener('click', handleAnyInteraction, options);
+      document.addEventListener('mousedown', handleAnyInteraction, options);
+      window.addEventListener('scroll', handleAnyInteraction, { passive: true, once: true });
+      
+      // Also add to body and document element for maximum coverage
+      if (document.body) {
+        document.body.addEventListener('touchstart', handleAnyInteraction, options);
+      }
     }
 
     return () => {
       if (motionListener) {
         window.removeEventListener('devicemotion', motionListener);
       }
-      document.removeEventListener('touchstart', handleAnyInteraction);
-      document.removeEventListener('touchend', handleAnyInteraction);
-      document.removeEventListener('click', handleAnyInteraction);
-      document.removeEventListener('mousedown', handleAnyInteraction);
+      document.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
+      document.removeEventListener('touchend', handleAnyInteraction, { capture: true });
+      document.removeEventListener('touchmove', handleAnyInteraction, { capture: true });
+      document.removeEventListener('click', handleAnyInteraction, { capture: true });
+      document.removeEventListener('mousedown', handleAnyInteraction, { capture: true });
       window.removeEventListener('scroll', handleAnyInteraction);
+      if (document.body) {
+        document.body.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
+      }
     };
   }, [handleShakeFromDevice, shakeThreshold]);
 
   return (
-    <PageContainer>
+    <PageContainer data-page-container>
       <ContentWrapper>
         <SADDLogoImage
           src="https://ca.reduceteencrashes.info/sites/default/files/SADD%20Logo%20Final%20Updated-white%20lettering-blackSADD.png"
