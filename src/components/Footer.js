@@ -120,7 +120,7 @@ const Footer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <img src = "https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" width="24"></img>
+              <img src = "https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" width="24" alt="Instagram"></img>
             </SocialIcon>
             <SocialIcon 
               href="https://discord.gg/8aVAxHSZkg" 
@@ -141,7 +141,7 @@ const Footer = () => {
               whileTap={{ scale: 0.9 }}
               style={{ padding: 0 }}
             >
-              <img src = "https://img.icons8.com/?size=100&id=Q7ugqmSRhVY4&format=png&color=000000" width = "24"></img>
+              <img src = "https://img.icons8.com/?size=100&id=Q7ugqmSRhVY4&format=png&color=000000" width = "24" alt="Google Classroom"></img>
             </SocialIcon>
           </SocialLinks>
         </FooterSection>

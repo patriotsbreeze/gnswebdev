@@ -137,7 +137,7 @@ const JoinPage = () => {
           >
             <IconWrapper>
               {/* Instagram SVG */}
-              <img src = "https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" width="28"></img>
+              <img src = "https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" width="28" alt="Instagram"></img>
             </IconWrapper>
             Instagram
           </SocialButton>
@@ -159,7 +159,7 @@ const JoinPage = () => {
           <ClassroomBox>
             <IconWrapper>
               {/* Google Classroom SVG */}
-              <img src = "https://img.icons8.com/?size=100&id=Q7ugqmSRhVY4&format=png&color=000000" width="28"></img>
+              <img src = "https://img.icons8.com/?size=100&id=Q7ugqmSRhVY4&format=png&color=000000" width="28" alt="Google Classroom"></img>
             </IconWrapper>
             Google Classroom:<span style={{ fontWeight: 700, color: '#64ffda', marginLeft: '0.5rem' }}>xozs5q5</span>
           </ClassroomBox>

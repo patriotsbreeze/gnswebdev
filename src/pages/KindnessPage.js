@@ -256,19 +256,16 @@ const quotes = [
 
 const KindnessPage = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
-  const [isShaking, setIsShaking] = useState(false);
   const shakeThreshold = 15; // Threshold for shake detection
   const buttonRef = useRef(null);
   const lastShakeTimeRef = useRef(0);
 
   const handleShake = useCallback(() => {
     // Trigger button shake animation
-    setIsShaking(true);
     if (buttonRef.current) {
       buttonRef.current.classList.add('shaking');
       setTimeout(() => {
         buttonRef.current?.classList.remove('shaking');
-        setIsShaking(false);
       }, 500);
     }
 
