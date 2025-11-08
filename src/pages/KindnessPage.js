@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// --- (STYLED COMPONENTS REMAIN UNCHANGED) ---
+
 const PageContainer = styled.div`
   min-height: 100vh;
   width: 100%;
@@ -200,6 +202,7 @@ const AffiliationLink = styled(motion.a)`
   }
 `;
 
+// --- (QUOTES ARRAY REMAINS UNCHANGED) ---
 const quotes = [
   {
     text: "No act of kindness, no matter how small, is ever wasted.",
@@ -382,75 +385,39 @@ const KindnessPage = () => {
     // Store function in ref so button click handler can call it
     startListeningRef.current = startListening;
 
-    // Request permission for iOS devices
-    const requestIOSPermission = async () => {
-      if (permissionStateRef.current.requested) return; // Already requested
-      permissionStateRef.current.requested = true;
-
-      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-        try {
-          const permissionState = await DeviceMotionEvent.requestPermission();
-          if (permissionState === 'granted') {
-            startListening();
-          } else {
-            console.log('Device motion permission denied');
-          }
-        } catch (error) {
-          console.error('Error requesting device motion permission:', error);
-        }
-      } else {
-        // For non-iOS devices, start listening immediately
-        startListening();
-      }
-    };
-
-    // Comprehensive interaction handler - captures ANY user interaction
-    const handleAnyInteraction = () => {
-      // Only request permission if not already requested or granted
-      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
-        requestIOSPermission();
-      }
-    };
-
+    /*
+    * CHANGE IMPLEMENTED HERE: 
+    * We are removing the aggressive 'any interaction' listeners (touchstart, click, etc.)
+    * on iOS to stop trying to force permission before a user *explicitly* clicks the button.
+    * This allows Android/non-iOS to start immediately, while iOS relies on the button click.
+    */
+    
     // Try to start immediately for non-iOS devices
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
       // Android and other devices - start immediately
       startListening();
       permissionStateRef.current.granted = true;
-    } else if (typeof DeviceMotionEvent !== 'undefined') {
-      // iOS devices - request permission on first interaction
-      // Use capture phase to catch interaction as early as possible
-      const options = { capture: true, passive: true, once: true };
-      
-      // Listen for ANY touch or interaction anywhere on the page
-      document.addEventListener('touchstart', handleAnyInteraction, options);
-      document.addEventListener('touchend', handleAnyInteraction, options);
-      document.addEventListener('touchmove', handleAnyInteraction, options);
-      document.addEventListener('click', handleAnyInteraction, options);
-      document.addEventListener('mousedown', handleAnyInteraction, options);
-      window.addEventListener('scroll', handleAnyInteraction, { passive: true, once: true });
-      
-      // Also add to body and document element for maximum coverage
-      if (document.body) {
-        document.body.addEventListener('touchstart', handleAnyInteraction, options);
-      }
+      // We explicitly do NOT call requestPermission here because it's only supported on iOS in Safari.
+    } else {
+        // For iOS and browsers that require permission (and support the API), 
+        // the button click handler is the reliable way to request permission.
+        // No listener is added here.
     }
+
 
     return () => {
       if (motionListener) {
         window.removeEventListener('devicemotion', motionListener);
       }
-      document.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
-      document.removeEventListener('touchend', handleAnyInteraction, { capture: true });
-      document.removeEventListener('touchmove', handleAnyInteraction, { capture: true });
-      document.removeEventListener('click', handleAnyInteraction, { capture: true });
-      document.removeEventListener('mousedown', handleAnyInteraction, { capture: true });
-      window.removeEventListener('scroll', handleAnyInteraction);
-      if (document.body) {
-        document.body.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
-      }
+      // Clean up of the removed 'any interaction' handlers is also removed here.
     };
   }, [handleShakeFromDevice, shakeThreshold]);
+
+  // Determine the correct instruction text based on device capability
+  const isIOS = typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function';
+  const instructionText = isIOS 
+    ? 'Click the button (required on iPhone/iPad to enable the motion sensor) or shake your device to reveal a quote.'
+    : 'Shake your device or click the button to reveal a quote about kindness';
 
   return (
     <PageContainer data-page-container>
@@ -475,7 +442,7 @@ const KindnessPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Shake your device or click the button to reveal a quote about kindness
+          {instructionText}
           <br />
           
         </Instruction>
