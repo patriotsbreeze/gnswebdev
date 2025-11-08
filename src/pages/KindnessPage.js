@@ -37,6 +37,15 @@ const ContentWrapper = styled.div`
   justify-content: center;
 `;
 
+const SADDLogoImage = styled(motion.img)`
+  width: clamp(120px, 30vw, 200px);
+  height: auto;
+  margin: 1rem auto 2rem;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+`;
+
 const PageTitle = styled(motion.h1)`
   font-size: clamp(2.5rem, 8vw, 4rem);
   font-weight: 700;
@@ -260,7 +269,8 @@ const KindnessPage = () => {
   const buttonRef = useRef(null);
   const lastShakeTimeRef = useRef(0);
 
-  const handleShake = useCallback(() => {
+  // Core shake function - triggers animation and shows quote
+  const triggerShake = useCallback(() => {
     // Trigger button shake animation
     if (buttonRef.current) {
       buttonRef.current.classList.add('shaking');
@@ -274,13 +284,28 @@ const KindnessPage = () => {
     setCurrentQuote(randomQuote);
   }, []);
 
-  // Device shake detection - improved implementation
+  // Handle shake from device motion - with 1 second cooldown
+  const handleShakeFromDevice = useCallback(() => {
+    const now = Date.now();
+    // Check if 1 second has passed since last shake
+    if (now - lastShakeTimeRef.current > 1000) {
+      lastShakeTimeRef.current = now;
+      triggerShake();
+    }
+  }, [triggerShake]);
+
+  // Handle button click - no cooldown
+  const handleButtonClick = useCallback(() => {
+    triggerShake();
+  }, [triggerShake]);
+
+  // Device shake detection - enabled immediately on page load
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
     let lastZ = 0;
     let lastTime = Date.now();
-    let isListening = false;
+    let motionListener = null;
 
     const handleDeviceMotion = (event) => {
       // Use acceleration (without gravity) if available, otherwise use accelerationIncludingGravity
@@ -309,12 +334,7 @@ const KindnessPage = () => {
 
         // Detect shake if acceleration exceeds threshold
         if (totalAcceleration > shakeThreshold) {
-          const now = Date.now();
-          // Prevent too frequent shakes (at least 1 second apart)
-          if (now - lastShakeTimeRef.current > 1000) {
-            lastShakeTimeRef.current = now;
-            handleShake();
-          }
+          handleShakeFromDevice();
         }
 
         // Update last known values
@@ -327,81 +347,87 @@ const KindnessPage = () => {
 
     // Function to start listening for device motion
     const startListening = () => {
-      if (isListening) return;
+      if (motionListener) return; // Already listening
       
-      // Request permission for device motion on iOS 13+
-      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-        DeviceMotionEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
-              isListening = true;
-            } else {
-              console.log('Device motion permission denied');
-            }
-          })
-          .catch(error => {
-            console.error('Error requesting device motion permission:', error);
-          });
-      } else if (typeof DeviceMotionEvent !== 'undefined') {
-        // For Android and other devices that don't require permission
-        try {
-          window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
-          isListening = true;
-        } catch (error) {
-          console.error('Error adding device motion listener:', error);
-        }
+      try {
+        window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
+        motionListener = handleDeviceMotion;
+      } catch (error) {
+        console.error('Error adding device motion listener:', error);
       }
     };
 
-    // Start listening on first user interaction (required for iOS)
-    const handleUserInteraction = () => {
-      startListening();
-      // Remove listeners after first interaction
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
+    // Request permission for iOS devices
+    const requestIOSPermission = async () => {
+      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+        try {
+          const permissionState = await DeviceMotionEvent.requestPermission();
+          if (permissionState === 'granted') {
+            startListening();
+          } else {
+            console.log('Device motion permission denied');
+          }
+        } catch (error) {
+          console.error('Error requesting device motion permission:', error);
+        }
+      } else {
+        // For non-iOS devices, start listening immediately
+        startListening();
+      }
     };
 
-    // Add event listeners for user interaction
-    document.addEventListener('touchstart', handleUserInteraction, { once: true });
-    document.addEventListener('click', handleUserInteraction, { once: true });
+    // For iOS, we need a user gesture to request permission
+    // We'll request it on ANY interaction (touch, click, scroll, etc.)
+    const handleAnyInteraction = () => {
+      requestIOSPermission();
+      // Remove all interaction listeners after first interaction
+      document.removeEventListener('touchstart', handleAnyInteraction);
+      document.removeEventListener('touchend', handleAnyInteraction);
+      document.removeEventListener('click', handleAnyInteraction);
+      document.removeEventListener('mousedown', handleAnyInteraction);
+      window.removeEventListener('scroll', handleAnyInteraction);
+    };
 
-    // Also try to start immediately for devices that don't require permission
-    // This will work for Android and desktop browsers
+    // Try to start immediately for non-iOS devices
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
+      // Android and other devices - start immediately
       startListening();
+    } else if (typeof DeviceMotionEvent !== 'undefined') {
+      // iOS devices - request permission on first interaction
+      // Listen for multiple interaction types to catch any user action
+      document.addEventListener('touchstart', handleAnyInteraction, { once: true, passive: true });
+      document.addEventListener('touchend', handleAnyInteraction, { once: true, passive: true });
+      document.addEventListener('click', handleAnyInteraction, { once: true, passive: true });
+      document.addEventListener('mousedown', handleAnyInteraction, { once: true, passive: true });
+      window.addEventListener('scroll', handleAnyInteraction, { once: true, passive: true });
     }
 
     return () => {
-      window.removeEventListener('devicemotion', handleDeviceMotion);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('click', handleUserInteraction);
+      if (motionListener) {
+        window.removeEventListener('devicemotion', motionListener);
+      }
+      document.removeEventListener('touchstart', handleAnyInteraction);
+      document.removeEventListener('touchend', handleAnyInteraction);
+      document.removeEventListener('click', handleAnyInteraction);
+      document.removeEventListener('mousedown', handleAnyInteraction);
+      window.removeEventListener('scroll', handleAnyInteraction);
     };
-  }, [handleShake, shakeThreshold]);
-
-  const handleButtonClick = () => {
-    // Request permission on iOS if not already granted (button click counts as user interaction)
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-      DeviceMotionEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            // Permission granted, shake detection will work now
-          }
-        })
-        .catch(() => {
-          // Permission denied or error, but still allow button click
-        });
-    }
-    handleShake();
-  };
+  }, [handleShakeFromDevice, shakeThreshold]);
 
   return (
     <PageContainer>
       <ContentWrapper>
+        <SADDLogoImage
+          src="https://ca.reduceteencrashes.info/sites/default/files/SADD%20Logo%20Final%20Updated-white%20lettering-blackSADD.png"
+          alt="SADD Club Logo"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        />
         <PageTitle
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           Spread Kindness
         </PageTitle>
