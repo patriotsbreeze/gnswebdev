@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage';
 import MeetingSlidesPage from './pages/MeetingSlidesPage';
 import ProjectsPage from './pages/ProjectsPage';
 import JoinPage from './pages/JoinPage';
+import KindnessPage from './pages/KindnessPage';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
@@ -84,26 +85,36 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  padding-top: 80px; /* Height of the navigation bar */
+  padding-top: ${props => props.hideNav ? '0' : '80px'}; /* Height of the navigation bar */
 `;
+
+const AppContent = () => {
+  const location = useLocation();
+  const isSecretPage = location.pathname === '/kindness';
+
+  return (
+    <AppContainer>
+      {!isSecretPage && <Navigation />}
+      <MainContent hideNav={isSecretPage}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/slides" element={<MeetingSlidesPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/join" element={<JoinPage />} />
+          <Route path="/kindness" element={<KindnessPage />} />
+        </Routes>
+      </MainContent>
+      {!isSecretPage && <Footer />}
+    </AppContainer>
+  );
+};
 
 function App() {
   return (
     <Router>
       <GlobalStyle />
-      <AppContainer>
-        <Navigation />
-        <MainContent>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/slides" element={<MeetingSlidesPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/join" element={<JoinPage />} />
-          </Routes>
-        </MainContent>
-        <Footer />
-      </AppContainer>
+      <AppContent />
       <Analytics />
     </Router>
   );
