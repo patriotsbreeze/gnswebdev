@@ -391,7 +391,7 @@ const SaludMentalPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Toca el botón primero para habilitar la función de agitar, luego agita tu dispositivo o toca el botón nuevamente para ver una cita sobre salud mental.
+          Agita tu tableta o toca el botón para ver una cita sobre salud mental.
           <br />
           
         </Instruction>
