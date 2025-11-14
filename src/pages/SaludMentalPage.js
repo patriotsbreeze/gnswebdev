@@ -271,7 +271,7 @@ const SaludMentalPage = () => {
     }
   }, [triggerShake]);
 
-  // Handle button click - no cooldown, also requests permission if needed
+  // Handle button click - no cooldown, also requests permission and enables shake if needed
   const handleButtonClick = useCallback(() => {
     // Request permission on iOS if not already granted (button click is a user gesture)
     if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -290,12 +290,20 @@ const SaludMentalPage = () => {
             // Permission denied or error - button still works
           });
         permissionStateRef.current.requested = true;
+      } else if (permissionStateRef.current.granted && startListeningRef.current) {
+        // If permission already granted, make sure we're listening
+        startListeningRef.current();
+      }
+    } else {
+      // For non-iOS devices, start listening when button is clicked
+      if (startListeningRef.current) {
+        startListeningRef.current();
       }
     }
     triggerShake();
   }, [triggerShake]);
 
-  // Device shake detection - enabled immediately on page load
+  // Device shake detection - enabled only after button click
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
@@ -357,72 +365,12 @@ const SaludMentalPage = () => {
     // Store function in ref so button click handler can call it
     startListeningRef.current = startListening;
 
-    // Request permission for iOS devices
-    const requestIOSPermission = async () => {
-      if (permissionStateRef.current.requested) return; // Already requested
-      permissionStateRef.current.requested = true;
-
-      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-        try {
-          const permissionState = await DeviceMotionEvent.requestPermission();
-          if (permissionState === 'granted') {
-            startListening();
-          } else {
-            console.log('Device motion permission denied');
-          }
-        } catch (error) {
-          console.error('Error requesting device motion permission:', error);
-        }
-      } else {
-        // For non-iOS devices, start listening immediately
-        startListening();
-      }
-    };
-
-    // Comprehensive interaction handler - captures ANY user interaction
-    const handleAnyInteraction = () => {
-      // Only request permission if not already requested or granted
-      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
-        requestIOSPermission();
-      }
-    };
-
-    // Try to start immediately for non-iOS devices
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
-      // Android and other devices - start immediately
-      startListening();
-      permissionStateRef.current.granted = true;
-    } else if (typeof DeviceMotionEvent !== 'undefined') {
-      // iOS devices - request permission on first interaction
-      // Use capture phase to catch interaction as early as possible
-      const options = { capture: true, passive: true, once: true };
-      
-      // Listen for ANY touch or interaction anywhere on the page
-      document.addEventListener('touchstart', handleAnyInteraction, options);
-      document.addEventListener('touchend', handleAnyInteraction, options);
-      document.addEventListener('touchmove', handleAnyInteraction, options);
-      document.addEventListener('click', handleAnyInteraction, options);
-      document.addEventListener('mousedown', handleAnyInteraction, options);
-      window.addEventListener('scroll', handleAnyInteraction, { passive: true, once: true });
-      
-      // Also add to body and document element for maximum coverage
-      if (document.body) {
-        document.body.addEventListener('touchstart', handleAnyInteraction, options);
-      }
-    }
+    // Don't start listening automatically - wait for button click to enable shake feature
+    // This ensures users must tap the button first to enable shake detection
 
     return () => {
       if (motionListener) {
         window.removeEventListener('devicemotion', motionListener);
-      }
-      document.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
-      document.removeEventListener('touchend', handleAnyInteraction, { capture: true });
-      document.removeEventListener('touchmove', handleAnyInteraction, { capture: true });
-      document.removeEventListener('click', handleAnyInteraction, { capture: true });
-      document.removeEventListener('mousedown', handleAnyInteraction, { capture: true });
-      window.removeEventListener('scroll', handleAnyInteraction);
-      if (document.body) {
-        document.body.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
       }
     };
   }, [handleShakeFromDevice, shakeThreshold]);
@@ -443,7 +391,7 @@ const SaludMentalPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Agita tu tableta o toca el botón para ver una cita sobre salud mental.
+          Toca el botón primero para habilitar la función de agitar, luego agita tu dispositivo o toca el botón nuevamente para ver una cita sobre salud mental.
           <br />
           
         </Instruction>
