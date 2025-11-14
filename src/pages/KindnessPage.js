@@ -202,7 +202,6 @@ const AffiliationLink = styled(motion.a)`
   }
 `;
 
-// --- (QUOTES ARRAY REMAINS UNCHANGED) ---
 const quotes = [
   {
     text: "No act of kindness, no matter how small, is ever wasted.",
@@ -268,11 +267,14 @@ const quotes = [
 
 const KindnessPage = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
+  const [motionPermission, setMotionPermission] = useState('unknown'); // 'unknown', 'granted', 'denied'
   const shakeThreshold = 15; // Threshold for shake detection
   const buttonRef = useRef(null);
   const lastShakeTimeRef = useRef(0);
-  const permissionStateRef = useRef({ requested: false, granted: false });
   const startListeningRef = useRef(null);
+  
+  // Check if the device is likely iOS (requires explicit permission request)
+  const isIOS = typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function';
 
   // Core shake function - triggers animation and shows quote
   const triggerShake = useCallback(() => {
@@ -299,31 +301,35 @@ const KindnessPage = () => {
     }
   }, [triggerShake]);
 
-  // Handle button click - no cooldown, also requests permission if needed
+  // Handle button click - also requests permission if needed
   const handleButtonClick = useCallback(() => {
-    // Request permission on iOS if not already granted (button click is a user gesture)
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
-      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
-        DeviceMotionEvent.requestPermission()
-          .then(permissionState => {
-            if (permissionState === 'granted') {
-              permissionStateRef.current.granted = true;
-              // Start listening immediately if we have the function
-              if (startListeningRef.current) {
-                startListeningRef.current();
-              }
+    // 1. If iOS, request permission
+    if (isIOS && motionPermission === 'unknown') {
+      DeviceMotionEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            setMotionPermission('granted');
+            if (startListeningRef.current) {
+              startListeningRef.current(); // Immediately start listening after permission
             }
-          })
-          .catch(() => {
-            // Permission denied or error - button still works
-          });
-        permissionStateRef.current.requested = true;
-      }
+          } else {
+            setMotionPermission('denied');
+          }
+          // Always trigger a quote even if permission is denied, as the button was clicked
+          triggerShake();
+        })
+        .catch((error) => {
+          setMotionPermission('denied');
+          console.error("Permission error:", error);
+          triggerShake();
+        });
+    } else {
+      // 2. If already granted/denied, or if not iOS, just trigger the shake/quote
+      triggerShake();
     }
-    triggerShake();
-  }, [triggerShake]);
+  }, [triggerShake, motionPermission, isIOS]);
 
-  // Device shake detection - enabled immediately on page load
+  // Device shake detection setup
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
@@ -332,7 +338,6 @@ const KindnessPage = () => {
     let motionListener = null;
 
     const handleDeviceMotion = (event) => {
-      // Use acceleration (without gravity) if available, otherwise use accelerationIncludingGravity
       const acceleration = event.acceleration || event.accelerationIncludingGravity;
       
       if (!acceleration || (acceleration.x === null && acceleration.y === null && acceleration.z === null)) {
@@ -342,18 +347,16 @@ const KindnessPage = () => {
       const currentTime = Date.now();
       const timeDifference = currentTime - lastTime;
 
-      // Only process every 100ms to reduce computational load
+      // Only process every 100ms
       if (timeDifference > 100) {
         const currentX = acceleration.x || 0;
         const currentY = acceleration.y || 0;
         const currentZ = acceleration.z || 0;
 
-        // Calculate change in acceleration
         const deltaX = Math.abs(currentX - lastX);
         const deltaY = Math.abs(currentY - lastY);
         const deltaZ = Math.abs(currentZ - lastZ);
 
-        // Calculate total acceleration change
         const totalAcceleration = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
         // Detect shake if acceleration exceeds threshold
@@ -361,7 +364,6 @@ const KindnessPage = () => {
           handleShakeFromDevice();
         }
 
-        // Update last known values
         lastX = currentX;
         lastY = currentY;
         lastZ = currentZ;
@@ -369,14 +371,15 @@ const KindnessPage = () => {
       }
     };
 
-    // Function to start listening for device motion - stored in ref so button can call it
+    // Function to start listening for device motion
     const startListening = () => {
       if (motionListener) return; // Already listening
       
       try {
         window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
         motionListener = handleDeviceMotion;
-        permissionStateRef.current.granted = true;
+        // Update state to reflect that we are now actively listening
+        setMotionPermission('granted');
       } catch (error) {
         console.error('Error adding device motion listener:', error);
       }
@@ -385,39 +388,35 @@ const KindnessPage = () => {
     // Store function in ref so button click handler can call it
     startListeningRef.current = startListening;
 
-    /*
-    * CHANGE IMPLEMENTED HERE: 
-    * We are removing the aggressive 'any interaction' listeners (touchstart, click, etc.)
-    * on iOS to stop trying to force permission before a user *explicitly* clicks the button.
-    * This allows Android/non-iOS to start immediately, while iOS relies on the button click.
-    */
-    
-    // Try to start immediately for non-iOS devices
-    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
-      // Android and other devices - start immediately
+    // *** IMMEDIATE START FOR NON-IOS DEVICES ***
+    if (!isIOS) {
+      // Android and other devices - start immediately upon load
       startListening();
-      permissionStateRef.current.granted = true;
-      // We explicitly do NOT call requestPermission here because it's only supported on iOS in Safari.
-    } else {
-        // For iOS and browsers that require permission (and support the API), 
-        // the button click handler is the reliable way to request permission.
-        // No listener is added here.
     }
-
+    // *** END IMMEDIATE START ***
 
     return () => {
       if (motionListener) {
         window.removeEventListener('devicemotion', motionListener);
       }
-      // Clean up of the removed 'any interaction' handlers is also removed here.
     };
-  }, [handleShakeFromDevice, shakeThreshold]);
+  }, [handleShakeFromDevice, shakeThreshold, isIOS]); // isIOS is now a dependency
 
-  // Determine the correct instruction text based on device capability
-  const isIOS = typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function';
-  const instructionText = isIOS 
-    ? 'Click the button (required on iPhone/iPad to enable the motion sensor) or shake your device to reveal a quote.'
-    : 'Shake your device or click the button to reveal a quote about kindness';
+  // Logic for instruction and button text
+  let buttonText = 'Shake for Kindness';
+  let instructionText = 'Shake your device or click the button to reveal a quote about kindness.';
+
+  if (isIOS) {
+    if (motionPermission === 'unknown') {
+      buttonText = 'Tap to Enable Shake Feature';
+      instructionText = 'On this device (iPhone/iPad), you must **tap the button first** to enable the shake feature.';
+    } else if (motionPermission === 'denied') {
+      buttonText = 'Tap for Quote (Shake Disabled)';
+      instructionText = 'Shake access was denied. Please tap the button to receive a quote.';
+    } else if (motionPermission === 'granted') {
+       buttonText = 'Shake or Tap for Kindness';
+    }
+  }
 
   return (
     <PageContainer data-page-container>
@@ -441,10 +440,10 @@ const KindnessPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          // Key added for AnimatePresence if Instruction text needs transition
+          key={instructionText} 
         >
           {instructionText}
-          <br />
-          
         </Instruction>
 
         <ShakeButton
@@ -455,8 +454,10 @@ const KindnessPage = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
+          // Key added for AnimatePresence if button text needs transition
+          key={buttonText} 
         >
-          Shake for Kindness
+          {buttonText}
         </ShakeButton>
 
         <AnimatePresence mode="wait">

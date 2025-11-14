@@ -10,6 +10,7 @@ import MeetingSlidesPage from './pages/MeetingSlidesPage';
 import ProjectsPage from './pages/ProjectsPage';
 import JoinPage from './pages/JoinPage';
 import KindnessPage from './pages/KindnessPage';
+import SaludMentalPage from './pages/SaludMentalPage';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
@@ -90,7 +91,7 @@ const MainContent = styled.main`
 
 const AppContent = () => {
   const location = useLocation();
-  const isSecretPage = location.pathname === '/kindness';
+  const isSecretPage = location.pathname === '/kindness' || location.pathname === '/salud-mental';
 
   return (
     <AppContainer>
@@ -103,6 +104,7 @@ const AppContent = () => {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/join" element={<JoinPage />} />
           <Route path="/kindness" element={<KindnessPage />} />
+          <Route path="/salud-mental" element={<SaludMentalPage />} />
         </Routes>
       </MainContent>
       {!isSecretPage && <Footer />}
