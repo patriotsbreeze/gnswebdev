@@ -204,64 +204,256 @@ const AffiliationLink = styled(motion.a)`
 
 const quotes = [
   {
-    text: "No act of kindness, no matter how small, is ever wasted.",
-    author: "Aesop"
+    text: "This too shall pass.",
+    author: "Persian proverb"
   },
   {
-    text: "Be kind, for everyone you meet is fighting a harder battle.",
-    author: "Plato"
+    text: "In the middle of winter, I found there was, within me, an invincible summer.",
+    author: "Albert Camus"
   },
   {
-    text: "Kindness is a language which the deaf can hear and the blind can see.",
-    author: "Mark Twain"
+    text: "No rain, no flowers.",
+    author: "SADD"
   },
   {
-    text: "The best way to find yourself is to lose yourself in the service of others.",
-    author: "Mahatma Gandhi"
+    text: "There is a crack in everything; that’s how the light gets in.",
+    author: "Leonard Cohen"
   },
   {
-    text: "In a world where you can be anything, be kind.",
-    author: "Unknown"
+    text: "You are stronger than you know and loved more than you realize.",
+    author: "SADD"
   },
   {
-    text: "Kindness is the sunshine in which virtue grows.",
-    author: "Robert Green Ingersoll"
+    text: "Even the darkest night will end and the sun will rise.",
+    author: "Victor Hugo"
   },
   {
-    text: "A warm smile is the universal language of kindness.",
-    author: "William Arthur Ward"
+    text: "Be gentle with yourself. You’re doing the best you can.",
+    author: "SADD"
   },
   {
-    text: "Remember there's no such thing as a small act of kindness. Every act creates a ripple with no logical end.",
-    author: "Scott Adams"
+    text: "Sometimes when things are falling apart, they may actually be falling into place.",
+    author: "SADD"
   },
   {
-    text: "Kindness is like snow—it beautifies everything it covers.",
-    author: "Kahlil Gibran"
-  },
-  {
-    text: "Wherever there is a human being, there is an opportunity for a kindness.",
-    author: "Lucius Annaeus Seneca"
-  },
-  {
-    text: "Kindness in words creates confidence. Kindness in thinking creates profoundness. Kindness in giving creates love.",
-    author: "Lao Tzu"
-  },
-  {
-    text: "The simplest acts of kindness are by far more powerful than a thousand heads bowing in prayer.",
-    author: "Mahatma Gandhi"
-  },
-  {
-    text: "Your acts of kindness are iridescent wings of divine love, which linger and continue to uplift others long after your sharing.",
+    text: "The wound is the place where the light enters you.",
     author: "Rumi"
   },
   {
-    text: "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
-    author: "Maya Angelou"
+    text: "You’ve survived 100% of your bad days so far.",
+    author: "SADD"
   },
   {
-    text: "Kind hearts are the gardens, kind thoughts are the roots, kind words are the flowers, kind deeds are the fruits.",
-    author: "Henry Wadsworth Longfellow"
+    text: "Just because you’re struggling doesn’t mean you’re failing.",
+    author: "SADD"
+  },
+  {
+    text: "Happiness can be found even in the darkest of times, if one only remembers to turn on the light.",
+    author: "J.K. Rowling"
+  },
+  {
+    text: "When you can’t look on the bright side, I will sit with you in the dark.",
+    author: "Alice in Wonderland (paraphrased)"
+  },
+  {
+    text: "You matter. You really, really matter.",
+    author: "SADD"
+  },
+  {
+    text: "Your story isn’t over yet.",
+    author: "SADD"
+  },
+  {
+    text: "Sometimes the smallest step in the right direction becomes the biggest step of your life.",
+    author: "Naeem Callaway"
+  },
+  {
+    text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+    author: "Ralph Waldo Emerson"
+  },
+  {
+    text: "Courage doesn’t always roar. Sometimes courage is the quiet voice at the end of the day saying, ‘I will try again tomorrow.’",
+    author: "Mary Anne Radmacher"
+  },
+  {
+    text: "If you’re going through hell, keep going.",
+    author: "Winston Churchill"
+  },
+  {
+    text: "Difficult roads often lead to beautiful destinations.",
+    author: "SADD"
+  },
+  {
+    text: "Breathe. You’re going to be okay. You’ve made it this far.",
+    author: "SADD"
+  },
+  {
+    text: "Your future self is already thanking you for not giving up today.",
+    author: "SADD"
+  },
+  {
+    text: "You have no idea how far you can go — don’t stop before you find out.",
+    author: "SADD"
+  },
+  {
+    text: "One day you will say: ‘This is why I kept going.’",
+    author: "SADD"
+  },
+  {
+    text: "If you can’t see the light yet, become it.",
+    author: "SADD"
+  },
+  {
+    text: "You owe it to yourself to see what happens if you don’t quit.",
+    author: "SADD"
+  },
+  {
+    text: "Consistency will beat talent when talent stops trying.",
+    author: "SADD"
+  },
+  {
+    text: "Small steps are still steps — success is built in centimeters, not miles.",
+    author: "SADD"
+  },
+  {
+    text: "Your only real competition is who you were yesterday.",
+    author: "SADD"
+  },
+  {
+    text: "Direction is more important than speed — keep moving.",
+    author: "SADD"
+  },
+  {
+    text: "Discipline is choosing what you want most over what you want now.",
+    author: "SADD"
+  },
+  {
+    text: "You are not ‘too late.’ You are exactly on time for your story.",
+    author: "SADD"
+  },
+  {
+    text: "Stop waiting for perfect — progress comes from action, not permission.",
+    author: "SADD"
+  },
+  {
+    text: "You’ve survived every challenge so far; you’re already powerful.",
+    author: "SADD"
+  },
+  {
+    text: "Your dreams are valid even if they scare others.",
+    author: "SADD"
+  },
+  {
+    text: "Walk like you’re carrying something the world needs — because you are.",
+    author: "SADD"
+  },
+  {
+    text: "Don’t downgrade your dream to fit your comfort zone — upgrade your habits.",
+    author: "SADD"
+  },
+  {
+    text: "Feeling unmotivated doesn’t mean you’re unworthy — move anyway.",
+    author: "SADD"
+  },
+  {
+    text: "Your fears are loud, but your potential is louder.",
+    author: "SADD"
+  },
+  {
+    text: "You’re allowed to struggle, just not allowed to surrender.",
+    author: "SADD"
+  },
+  {
+    text: "You are building a life in the future you will be proud to live.",
+    author: "SADD"
+  },
+  {
+    text: "Every challenge is a tool — not a punishment — shaping who you become.",
+    author: "SADD"
+  },
+  {
+    text: "The ones who succeed are the ones who keep going after they fail.",
+    author: "SADD"
+  },
+  {
+    text: "Your growth is not an accident — it’s a choice.",
+    author: "SADD"
+  },
+  {
+    text: "You weren’t born to be average; you were built to evolve.",
+    author: "SADD"
+  },
+  {
+    text: "I knew that if I failed I wouldn’t regret that, but I knew the one thing I might regret is not trying.",
+    author: "Jeff Bezos"
+  },
+  {
+    text: "Don’t limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you.",
+    author: "Mary Kay Ash"
+  },
+  {
+    text: "When something is important enough, you do it even if the odds are not in your favor.",
+    author: "Elon Musk"
+  },
+  {
+    text: "The only way to do great work is to love what you do.",
+    author: "Steve Jobs"
+  },
+  {
+    text: "Don’t be afraid to give up the good to go for the great.",
+    author: "John D. Rockefeller"
+  },
+  {
+    text: "Your time is limited, don’t waste it living someone else’s life.",
+    author: "Steve Jobs"
+  },
+  {
+    text: "Most people who are criticizing you haven’t even tried what you failed at.",
+    author: "David Goggins"
+  },
+  {
+    text: "Don’t stop when you’re tired, stop when you’re done.",
+    author: "David Goggins"
+  },
+  {
+    text: "Success is the most vulnerable place to be — it blinds you.",
+    author: "Andrew Tate"
+  },
+  {
+    text: "Aspire to be the person you’re afraid to be.",
+    author: "Andrew Tate"
+  },
+  {
+    text: "Yesterday is history; tomorrow is a mystery; today is a gift, that’s why it’s called the present",
+    author: "Master Oogway from Kung Fu Panda"
+  },
+  {
+    text: "The flower that blooms in adversity is the most rare and beautiful of all.",
+    author: "Mulan"
+  },
+  {
+    text: "It’s only after we’ve lost everything that we’re free to do anything.",
+    author: "Fight Club"
+  },
+  {
+    text: "Just keep swimming.",
+    author: "Finding Nemo"
+  },
+  {
+    text: "Oh yes, the past can hurt. But you can either run from it or learn from it.",
+    author: "The Lion King"
+  },
+  {
+    text: "Adventure is out there!",
+    author: "Up"
+  },
+  {
+    text: "To infinity… and beyond.",
+    author: "Toy Story"
+  },
+  {
+    text: "Sometimes the right path is not the easiest one.",
+    author: "Pocahontas"
   }
 ];
 
