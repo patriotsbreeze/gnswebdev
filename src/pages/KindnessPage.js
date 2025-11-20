@@ -2,8 +2,6 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// --- (STYLED COMPONENTS REMAIN UNCHANGED) ---
-
 const PageContainer = styled.div`
   min-height: 100vh;
   width: 100%;
@@ -203,78 +201,269 @@ const AffiliationLink = styled(motion.a)`
 `;
 
 const quotes = [
-  {
-    text: "No act of kindness, no matter how small, is ever wasted.",
-    author: "Aesop"
-  },
-  {
-    text: "Be kind, for everyone you meet is fighting a harder battle.",
-    author: "Plato"
-  },
-  {
-    text: "Kindness is a language which the deaf can hear and the blind can see.",
-    author: "Mark Twain"
-  },
-  {
-    text: "The best way to find yourself is to lose yourself in the service of others.",
-    author: "Mahatma Gandhi"
-  },
-  {
-    text: "In a world where you can be anything, be kind.",
-    author: "Unknown"
-  },
-  {
-    text: "Kindness is the sunshine in which virtue grows.",
-    author: "Robert Green Ingersoll"
-  },
-  {
-    text: "A warm smile is the universal language of kindness.",
-    author: "William Arthur Ward"
-  },
-  {
-    text: "Remember there's no such thing as a small act of kindness. Every act creates a ripple with no logical end.",
-    author: "Scott Adams"
-  },
-  {
-    text: "Kindness is like snow—it beautifies everything it covers.",
-    author: "Kahlil Gibran"
-  },
-  {
-    text: "Wherever there is a human being, there is an opportunity for a kindness.",
-    author: "Lucius Annaeus Seneca"
-  },
-  {
-    text: "Kindness in words creates confidence. Kindness in thinking creates profoundness. Kindness in giving creates love.",
-    author: "Lao Tzu"
-  },
-  {
-    text: "The simplest acts of kindness are by far more powerful than a thousand heads bowing in prayer.",
-    author: "Mahatma Gandhi"
-  },
-  {
-    text: "Your acts of kindness are iridescent wings of divine love, which linger and continue to uplift others long after your sharing.",
-    author: "Rumi"
-  },
-  {
-    text: "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
-    author: "Maya Angelou"
-  },
-  {
-    text: "Kind hearts are the gardens, kind thoughts are the roots, kind words are the flowers, kind deeds are the fruits.",
-    author: "Henry Wadsworth Longfellow"
-  }
+  [
+    {
+      text: "This too shall pass.",
+      author: "Persian proverb"
+    },
+    {
+      text: "In the middle of winter, I found there was, within me, an invincible summer.",
+      author: "Albert Camus"
+    },
+    {
+      text: "No rain, no flowers.",
+      author: "SADD"
+    },
+    {
+      text: "There is a crack in everything; that’s how the light gets in.",
+      author: "Leonard Cohen"
+    },
+    {
+      text: "You are stronger than you know and loved more than you realize.",
+      author: "SADD"
+    },
+    {
+      text: "Even the darkest night will end and the sun will rise.",
+      author: "Victor Hugo"
+    },
+    {
+      text: "Be gentle with yourself. You’re doing the best you can.",
+      author: "SADD"
+    },
+    {
+      text: "Sometimes when things are falling apart, they may actually be falling into place.",
+      author: "SADD"
+    },
+    {
+      text: "The wound is the place where the light enters you.",
+      author: "Rumi"
+    },
+    {
+      text: "You’ve survived 100% of your bad days so far.",
+      author: "SADD"
+    },
+    {
+      text: "Just because you’re struggling doesn’t mean you’re failing.",
+      author: "SADD"
+    },
+    {
+      text: "Happiness can be found even in the darkest of times, if one only remembers to turn on the light.",
+      author: "J.K. Rowling"
+    },
+    {
+      text: "When you can’t look on the bright side, I will sit with you in the dark.",
+      author: "Alice in Wonderland (paraphrased)"
+    },
+    {
+      text: "You matter. You really, really matter.",
+      author: "SADD"
+    },
+    {
+      text: "Your story isn’t over yet.",
+      author: "SADD"
+    },
+    {
+      text: "Sometimes the smallest step in the right direction becomes the biggest step of your life.",
+      author: "Naeem Callaway"
+    },
+    {
+      text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+      author: "Ralph Waldo Emerson"
+    },
+    {
+      text: "Courage doesn’t always roar. Sometimes courage is the quiet voice at the end of the day saying, ‘I will try again tomorrow.’",
+      author: "Mary Anne Radmacher"
+    },
+    {
+      text: "If you’re going through hell, keep going.",
+      author: "Winston Churchill"
+    },
+    {
+      text: "Difficult roads often lead to beautiful destinations.",
+      author: "SADD"
+    },
+    {
+      text: "Breathe. You’re going to be okay. You’ve made it this far.",
+      author: "SADD"
+    },
+    {
+      text: "Your future self is already thanking you for not giving up today.",
+      author: "SADD"
+    },
+    {
+      text: "You have no idea how far you can go — don’t stop before you find out.",
+      author: "SADD"
+    },
+    {
+      text: "One day you will say: ‘This is why I kept going.’",
+      author: "SADD"
+    },
+    {
+      text: "If you can’t see the light yet, become it.",
+      author: "SADD"
+    },
+    {
+      text: "You owe it to yourself to see what happens if you don’t quit.",
+      author: "SADD"
+    },
+    {
+      text: "Consistency will beat talent when talent stops trying.",
+      author: "SADD"
+    },
+    {
+      text: "Small steps are still steps — success is built in centimeters, not miles.",
+      author: "SADD"
+    },
+    {
+      text: "Your only real competition is who you were yesterday.",
+      author: "SADD"
+    },
+    {
+      text: "Direction is more important than speed — keep moving.",
+      author: "SADD"
+    },
+    {
+      text: "Discipline is choosing what you want most over what you want now.",
+      author: "SADD"
+    },
+    {
+      text: "You are not ‘too late.’ You are exactly on time for your story.",
+      author: "SADD"
+    },
+    {
+      text: "Stop waiting for perfect — progress comes from action, not permission.",
+      author: "SADD"
+    },
+    {
+      text: "You’ve survived every challenge so far; you’re already powerful.",
+      author: "SADD"
+    },
+    {
+      text: "Your dreams are valid even if they scare others.",
+      author: "SADD"
+    },
+    {
+      text: "Walk like you’re carrying something the world needs — because you are.",
+      author: "SADD"
+    },
+    {
+      text: "Don’t downgrade your dream to fit your comfort zone — upgrade your habits.",
+      author: "SADD"
+    },
+    {
+      text: "Feeling unmotivated doesn’t mean you’re unworthy — move anyway.",
+      author: "SADD"
+    },
+    {
+      text: "Your fears are loud, but your potential is louder.",
+      author: "SADD"
+    },
+    {
+      text: "You’re allowed to struggle, just not allowed to surrender.",
+      author: "SADD"
+    },
+    {
+      text: "You are building a life in the future you will be proud to live.",
+      author: "SADD"
+    },
+    {
+      text: "Every challenge is a tool — not a punishment — shaping who you become.",
+      author: "SADD"
+    },
+    {
+      text: "The ones who succeed are the ones who keep going after they fail.",
+      author: "SADD"
+    },
+    {
+      text: "Your growth is not an accident — it’s a choice.",
+      author: "SADD"
+    },
+    {
+      text: "You weren’t born to be average; you were built to evolve.",
+      author: "SADD"
+    },
+    {
+      text: "I knew that if I failed I wouldn’t regret that, but I knew the one thing I might regret is not trying.",
+      author: "Jeff Bezos"
+    },
+    {
+      text: "Don’t limit yourself. Many people limit themselves to what they think they can do. You can go as far as your mind lets you.",
+      author: "Mary Kay Ash"
+    },
+    {
+      text: "When something is important enough, you do it even if the odds are not in your favor.",
+      author: "Elon Musk"
+    },
+    {
+      text: "The only way to do great work is to love what you do.",
+      author: "Steve Jobs"
+    },
+    {
+      text: "Don’t be afraid to give up the good to go for the great.",
+      author: "John D. Rockefeller"
+    },
+    {
+      text: "Your time is limited, don’t waste it living someone else’s life.",
+      author: "Steve Jobs"
+    },
+    {
+      text: "Most people who are criticizing you haven’t even tried what you failed at.",
+      author: "David Goggins"
+    },
+    {
+      text: "Don’t stop when you’re tired, stop when you’re done.",
+      author: "David Goggins"
+    },
+    {
+      text: "Success is the most vulnerable place to be — it blinds you.",
+      author: "Andrew Tate"
+    },
+    {
+      text: "Aspire to be the person you’re afraid to be.",
+      author: "Andrew Tate"
+    },
+    {
+      text: "Yesterday is history; tomorrow is a mystery; today is a gift, that’s why it’s called the present",
+      author: "Master Oogway from Kung Fu Panda"
+    },
+    {
+      text: "The flower that blooms in adversity is the most rare and beautiful of all.",
+      author: "Mulan"
+    },
+    {
+      text: "It’s only after we’ve lost everything that we’re free to do anything.",
+      author: "Fight Club"
+    },
+    {
+      text: "Just keep swimming.",
+      author: "Finding Nemo"
+    },
+    {
+      text: "Oh yes, the past can hurt. But you can either run from it or learn from it.",
+      author: "The Lion King"
+    },
+    {
+      text: "Adventure is out there!",
+      author: "Up"
+    },
+    {
+      text: "To infinity… and beyond.",
+      author: "Toy Story"
+    },
+    {
+      text: "Sometimes the right path is not the easiest one.",
+      author: "Pocahontas"
+    }
+  ]
 ];
 
 const KindnessPage = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
-  const [motionPermission, setMotionPermission] = useState('unknown'); // 'unknown', 'granted', 'denied'
   const shakeThreshold = 15; // Threshold for shake detection
   const buttonRef = useRef(null);
   const lastShakeTimeRef = useRef(0);
+  const permissionStateRef = useRef({ requested: false, granted: false });
   const startListeningRef = useRef(null);
-  
-  // Check if the device is likely iOS (requires explicit permission request)
-  const isIOS = typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function';
 
   // Core shake function - triggers animation and shows quote
   const triggerShake = useCallback(() => {
@@ -301,35 +490,31 @@ const KindnessPage = () => {
     }
   }, [triggerShake]);
 
-  // Handle button click - also requests permission if needed
+  // Handle button click - no cooldown, also requests permission if needed
   const handleButtonClick = useCallback(() => {
-    // 1. If iOS, request permission
-    if (isIOS && motionPermission === 'unknown') {
-      DeviceMotionEvent.requestPermission()
-        .then(permissionState => {
-          if (permissionState === 'granted') {
-            setMotionPermission('granted');
-            if (startListeningRef.current) {
-              startListeningRef.current(); // Immediately start listening after permission
+    // Request permission on iOS if not already granted (button click is a user gesture)
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
+        DeviceMotionEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              permissionStateRef.current.granted = true;
+              // Start listening immediately if we have the function
+              if (startListeningRef.current) {
+                startListeningRef.current();
+              }
             }
-          } else {
-            setMotionPermission('denied');
-          }
-          // Always trigger a quote even if permission is denied, as the button was clicked
-          triggerShake();
-        })
-        .catch((error) => {
-          setMotionPermission('denied');
-          console.error("Permission error:", error);
-          triggerShake();
-        });
-    } else {
-      // 2. If already granted/denied, or if not iOS, just trigger the shake/quote
-      triggerShake();
+          })
+          .catch(() => {
+            // Permission denied or error - button still works
+          });
+        permissionStateRef.current.requested = true;
+      }
     }
-  }, [triggerShake, motionPermission, isIOS]);
+    triggerShake();
+  }, [triggerShake]);
 
-  // Device shake detection setup
+  // Device shake detection - enabled immediately on page load
   useEffect(() => {
     let lastX = 0;
     let lastY = 0;
@@ -338,6 +523,7 @@ const KindnessPage = () => {
     let motionListener = null;
 
     const handleDeviceMotion = (event) => {
+      // Use acceleration (without gravity) if available, otherwise use accelerationIncludingGravity
       const acceleration = event.acceleration || event.accelerationIncludingGravity;
       
       if (!acceleration || (acceleration.x === null && acceleration.y === null && acceleration.z === null)) {
@@ -347,16 +533,18 @@ const KindnessPage = () => {
       const currentTime = Date.now();
       const timeDifference = currentTime - lastTime;
 
-      // Only process every 100ms
+      // Only process every 100ms to reduce computational load
       if (timeDifference > 100) {
         const currentX = acceleration.x || 0;
         const currentY = acceleration.y || 0;
         const currentZ = acceleration.z || 0;
 
+        // Calculate change in acceleration
         const deltaX = Math.abs(currentX - lastX);
         const deltaY = Math.abs(currentY - lastY);
         const deltaZ = Math.abs(currentZ - lastZ);
 
+        // Calculate total acceleration change
         const totalAcceleration = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
         // Detect shake if acceleration exceeds threshold
@@ -364,6 +552,7 @@ const KindnessPage = () => {
           handleShakeFromDevice();
         }
 
+        // Update last known values
         lastX = currentX;
         lastY = currentY;
         lastZ = currentZ;
@@ -371,15 +560,14 @@ const KindnessPage = () => {
       }
     };
 
-    // Function to start listening for device motion
+    // Function to start listening for device motion - stored in ref so button can call it
     const startListening = () => {
       if (motionListener) return; // Already listening
       
       try {
         window.addEventListener('devicemotion', handleDeviceMotion, { passive: true });
         motionListener = handleDeviceMotion;
-        // Update state to reflect that we are now actively listening
-        setMotionPermission('granted');
+        permissionStateRef.current.granted = true;
       } catch (error) {
         console.error('Error adding device motion listener:', error);
       }
@@ -388,35 +576,75 @@ const KindnessPage = () => {
     // Store function in ref so button click handler can call it
     startListeningRef.current = startListening;
 
-    // *** IMMEDIATE START FOR NON-IOS DEVICES ***
-    if (!isIOS) {
-      // Android and other devices - start immediately upon load
+    // Request permission for iOS devices
+    const requestIOSPermission = async () => {
+      if (permissionStateRef.current.requested) return; // Already requested
+      permissionStateRef.current.requested = true;
+
+      if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+        try {
+          const permissionState = await DeviceMotionEvent.requestPermission();
+          if (permissionState === 'granted') {
+            startListening();
+          } else {
+            console.log('Device motion permission denied');
+          }
+        } catch (error) {
+          console.error('Error requesting device motion permission:', error);
+        }
+      } else {
+        // For non-iOS devices, start listening immediately
+        startListening();
+      }
+    };
+
+    // Comprehensive interaction handler - captures ANY user interaction
+    const handleAnyInteraction = () => {
+      // Only request permission if not already requested or granted
+      if (!permissionStateRef.current.granted && !permissionStateRef.current.requested) {
+        requestIOSPermission();
+      }
+    };
+
+    // Try to start immediately for non-iOS devices
+    if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission !== 'function') {
+      // Android and other devices - start immediately
       startListening();
+      permissionStateRef.current.granted = true;
+    } else if (typeof DeviceMotionEvent !== 'undefined') {
+      // iOS devices - request permission on first interaction
+      // Use capture phase to catch interaction as early as possible
+      const options = { capture: true, passive: true, once: true };
+      
+      // Listen for ANY touch or interaction anywhere on the page
+      document.addEventListener('touchstart', handleAnyInteraction, options);
+      document.addEventListener('touchend', handleAnyInteraction, options);
+      document.addEventListener('touchmove', handleAnyInteraction, options);
+      document.addEventListener('click', handleAnyInteraction, options);
+      document.addEventListener('mousedown', handleAnyInteraction, options);
+      window.addEventListener('scroll', handleAnyInteraction, { passive: true, once: true });
+      
+      // Also add to body and document element for maximum coverage
+      if (document.body) {
+        document.body.addEventListener('touchstart', handleAnyInteraction, options);
+      }
     }
-    // *** END IMMEDIATE START ***
 
     return () => {
       if (motionListener) {
         window.removeEventListener('devicemotion', motionListener);
       }
+      document.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
+      document.removeEventListener('touchend', handleAnyInteraction, { capture: true });
+      document.removeEventListener('touchmove', handleAnyInteraction, { capture: true });
+      document.removeEventListener('click', handleAnyInteraction, { capture: true });
+      document.removeEventListener('mousedown', handleAnyInteraction, { capture: true });
+      window.removeEventListener('scroll', handleAnyInteraction);
+      if (document.body) {
+        document.body.removeEventListener('touchstart', handleAnyInteraction, { capture: true });
+      }
     };
-  }, [handleShakeFromDevice, shakeThreshold, isIOS]); // isIOS is now a dependency
-
-  // Logic for instruction and button text
-  let buttonText = 'Shake for Kindness';
-  let instructionText = 'Shake your device or click the button to reveal a quote about kindness.';
-
-  if (isIOS) {
-    if (motionPermission === 'unknown') {
-      buttonText = 'Tap to Enable Shake Feature';
-      instructionText = 'On this device (iPhone/iPad), you must **tap the button first** to enable the shake feature.';
-    } else if (motionPermission === 'denied') {
-      buttonText = 'Tap for Quote (Shake Disabled)';
-      instructionText = 'Shake access was denied. Please tap the button to receive a quote.';
-    } else if (motionPermission === 'granted') {
-       buttonText = 'Shake or Tap for Kindness';
-    }
-  }
+  }, [handleShakeFromDevice, shakeThreshold]);
 
   return (
     <PageContainer data-page-container>
@@ -440,10 +668,10 @@ const KindnessPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          // Key added for AnimatePresence if Instruction text needs transition
-          key={instructionText} 
         >
-          {instructionText}
+          Shake your device or click the button to reveal a quote about kindness
+          <br />
+          
         </Instruction>
 
         <ShakeButton
@@ -454,10 +682,8 @@ const KindnessPage = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          // Key added for AnimatePresence if button text needs transition
-          key={buttonText} 
         >
-          {buttonText}
+          Shake for Kindness
         </ShakeButton>
 
         <AnimatePresence mode="wait">
