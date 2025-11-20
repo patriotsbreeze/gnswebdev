@@ -201,6 +201,7 @@ const AffiliationLink = styled(motion.a)`
 `;
 
 const quotes = [
+  [
     {
       text: "This too shall pass.",
       author: "Persian proverb"
@@ -453,6 +454,7 @@ const quotes = [
       text: "Sometimes the right path is not the easiest one.",
       author: "Pocahontas"
     }
+  ]
 ];
 
 const KindnessPage = () => {
