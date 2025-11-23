@@ -132,6 +132,14 @@ const ProjectsPage = () => {
       demo: "https://famous-rotisserie.vercel.app"
     },
     {
+      title: "Project Life International Website",
+      type: "Full-Stack",
+      description: "Project Life International is a non-profit organization that fills critical gaps in the national bone marrow registry, educate communities about civic duty and lifesaving service, and co-create initiatives with local partners to drive volunteerism and fundraising.",
+      image: "https://i.postimg.cc/1RMj0LDN/projectlifeint.png",
+      contributors: ["Daniel Kosukhin", "Austin Jin", "Bryan Cheng"],
+      demo: "https://projectlife.international"
+    },
+    {
       title: "EHYG Church website ",
       type: "Frontend",
       description: "Eunhae Youth Group presents itself as the most welcoming community, ever, associated with Eunhae Church (“은혜교회”), and emphasizes building the next generation “one child at a time.",
